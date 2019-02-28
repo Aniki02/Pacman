@@ -6,8 +6,8 @@ SRC = src
 OBJ = obj
 BIN = bin
 EXEC = play
-POINT_C = $(wildcard $(SRC)/*.cpp)
-POINT_O = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(POINT_C))
+POINT_C = $(wildcard $(SRC)*.cpp)
+POINT_O = $(patsubst $(SRC)*/%.cpp, $(OBJ)/%.o, $(POINT_C))
 
 
 # recette: ingredient(s)
@@ -18,10 +18,10 @@ POINT_O = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(POINT_C))
 
 all: $(EXEC)
 
-$(EXEC): $(OBJ)/main.o $(POINT_O)	
+$(EXEC): $(OBJ)/TestTextureFactory.o $(POINT_O)	
 	$(CC) $^ -o $(BIN)/$(EXEC) $(LDFLAGS)
 
-$(OBJ)/main.o: $(SRC)/main.cpp 
+$(OBJ)/TestTextureFactory.o: $(SRC)/TestTextureFactory.cpp 
 	$(CC) -c $(CFLAGS) $< -o $@
 
 $(OBJ)/%.o: $(SRC)/%.cpp
