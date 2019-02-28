@@ -6,15 +6,16 @@
 #include "Ghost.hpp"
 
 class World{
-    GameElement * _pacman, * _ghost;
+    Pacman * _pacman; 
+    Ghost * _ghost;
 public:
     World(){
         _pacman = new Pacman();
         _ghost = new Ghost();
     }
 
-    GameElement * getPacman() const {return _pacman;}
-    GameElement * getGhost() const {return _ghost;}
+    Pacman * getPacman() const {return _pacman;}
+    Ghost * getGhost() const {return _ghost;}
     
 };
 #endif
