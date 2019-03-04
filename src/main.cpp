@@ -9,7 +9,6 @@
 #include "Ghost.hpp"
 #include "TextureFactory.hpp"
 #include "WorldRenderer.hpp"
-#include "LevelGenerator.hpp"
 #include "FaxeRepereMonde.hpp"
 
 using namespace sf;
@@ -22,7 +21,7 @@ int main(){
     unsigned int vertCitron = 0x00FF00FF;
    
     //creation de labyrinthe
-    LevelGenerator *lab  = new LevelGenerator(7,magenta, turquoise, vertCitron);
+    //LevelGenerator *lab  = new LevelGenerator(7,magenta, turquoise, vertCitron);
 
     string titre("Labyrinthe");
     int largeur = 800, hauteur = 500;
@@ -44,8 +43,8 @@ int main(){
         }
 
         fenetreGraphe.fenetre.clear(sf::Color::Black);
-        bool ok = lab->getGraphe()->dessine(fenetreGraphe);
-        wr->render(&fenetreGraphe.fenetre);
+        //bool ok = lab->getGraphe()->dessine(fenetreGraphe);
+        wr->render(fenetreGraphe);
         fenetreGraphe.fenetre.display();
     }
     return 0;

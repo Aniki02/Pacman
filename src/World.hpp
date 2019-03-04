@@ -4,6 +4,7 @@
 #include "GameElement.hpp"
 #include "Pacman.hpp"
 #include "Ghost.hpp"
+#include "LevelGenerator.hpp"
 
 class World{
     Pacman * _pacman; 
