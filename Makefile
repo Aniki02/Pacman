@@ -1,11 +1,10 @@
 CC = g++
-CFLAGS = -Wall -Wno-unknown-pragmas -std=c++11
-CFLAGS += $(shell pkg-config --cflags sfml-all)
-LDFLAGS = $(shell pkg-config --libs sfml-all)
+CFLAGS = -Wall -Weffc++ -Wno-unknown-pragmas -std=c++11
+LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
 SRC = src
 OBJ = obj
 BIN = bin
-EXEC = play
+EXEC = setup
 POINT_C = $(wildcard $(SRC)/*.cpp)
 POINT_O = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(POINT_C))
 
