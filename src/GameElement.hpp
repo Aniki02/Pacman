@@ -2,7 +2,7 @@
 #define _GAMEELEMENT_HPP
 
 #include <string>
-#include "Vecteur2D.h"
+#include "Vecteur2D.hpp"
 
 
 class GameElement{

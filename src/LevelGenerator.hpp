@@ -25,10 +25,11 @@
 
             const Sommet<VSommet> * getSommetCourant() const {return sommetCourant;}
             void setSommetCourant(Sommet<VSommet> * newSommetCourant){sommetCourant = newSommetCourant;}
-            // array<Sommet<VSommet> *, 8> getVoisin() const{
-            //     PElement<Sommet<VSommet>> * voisins = this->labyrinthe.voisins(this->sommetCourant);
+            array<Sommet<VSommet> *, 8> getVoisin() const{
+                PElement<Sommet<VSommet>> * voisins = this->labyrinthe.voisins(this->sommetCourant);
                 
-            // }
+                
+            }
         private:
             
             void generatorArete1(const int ligne, const int colonne, 
