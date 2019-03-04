@@ -4,7 +4,7 @@
 GameElement::GameElement(const string & name){
     if (name == "") throw Erreur("Nom vide");
     _name = name;
-    _position = Vecteur2D(0,0);
+    _position = Vecteur2D(1,3);
 }
 
 void GameElement::setPosition(Vecteur2D newPosition){

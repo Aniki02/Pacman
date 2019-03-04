@@ -4,7 +4,9 @@
 #include <SFML/Graphics.hpp>
 #include "World.hpp"
 #include "TextureFactory.hpp"
+
 #include "LevelGenerator.hpp"
+#include "FenetreGrapheSFML.hpp"
 
 using namespace sf;
 class WorldRenderer{
@@ -26,10 +28,12 @@ public:
     void handleInput(sf::Event event);
     void update(sf::Event event);
 
-    template<class FENETRE>
-    void render(FENETRE & window){
+    
+    void render(FenetreGrapheSFML & window){
 
         bool ok = labyrinthe->getGraphe()->dessine(window);
+        Vecteur2D posPacman = window.t.applique(_world->getPacman()->getPosition());
+        spritePacman.setPosition(posPacman.x, posPacman.y);
         window.fenetre.draw(spritePacman);
         window.fenetre.draw(spriteGhost);
     }
