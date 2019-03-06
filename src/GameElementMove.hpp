@@ -10,29 +10,30 @@ protected:
     GameElementMove(const string & name, int speed):GameElement(name), _speed(speed){}
     virtual ~GameElementMove(){}
 public:
+   
     void moveNorth(){
-        this->setPosition(this->getPosition().x, this->getPosition().y - Constants::step);
+        this->setPosition(this->getPosition().x, this->getPosition().y + Constants::step);
     }
     void moveNorthEast(){
-        this->setPosition(this->getPosition().x + Constants::step, this->getPosition().y - Constants::step);
+        this->setPosition(this->getPosition().x + Constants::step, this->getPosition().y + Constants::step);
     }
     void moveEast(){
         this->setPosition(this->getPosition().x + Constants::step, this->getPosition().y );
     }
     void moveSouthEast(){
-        this->setPosition(this->getPosition().x + Constants::step, this->getPosition().y + Constants::step );
+        this->setPosition(this->getPosition().x + Constants::step, this->getPosition().y - Constants::step );
     }
     void moveSouth(){
-        this->setPosition(this->getPosition().x, this->getPosition().y + Constants::step );
+        this->setPosition(this->getPosition().x, this->getPosition().y - Constants::step );
     }
     void moveSouthWest(){
-        this->setPosition(this->getPosition().x - Constants::step, this->getPosition().y + Constants::step );
+        this->setPosition(this->getPosition().x - Constants::step, this->getPosition().y - Constants::step );
     }
     void moveWest(){
         this->setPosition(this->getPosition().x - Constants::step, this->getPosition().y);
     }
     void moveNorthWest(){
-        this->setPosition(this->getPosition().x - Constants::step, this->getPosition().y - Constants::step);
+        this->setPosition(this->getPosition().x - Constants::step, this->getPosition().y + Constants::step);
     }
 
 };

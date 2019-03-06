@@ -4,12 +4,12 @@
 #include <SFML/Graphics.hpp>
 #include "World.hpp"
 #include "TextureFactory.hpp"
-
+#include "PeutSeDeplacer.hpp"
 #include "LevelGenerator.hpp"
-#include "FenetreGrapheSFML.hpp"
 
 using namespace sf;
 class WorldRenderer{
+public:
     World * _world;
     sf::Sprite spritePacman, spriteGhost;
     LevelGenerator * labyrinthe;
@@ -28,17 +28,28 @@ public:
     void handleInput(sf::Event event);
     void update(sf::Event event);
 
-    
-    void render(FenetreGrapheSFML & window){
-
+    template<class FENETRE>
+    void render(FENETRE & window){
         bool ok = labyrinthe->getGraphe()->dessine(window);
         Vecteur2D posPacman = window.t.applique(_world->getPacman()->getPosition());
-        spritePacman.setPosition(posPacman.x, posPacman.y);
+        spritePacman.setPosition(posPacman.x - TextureFactory::getInstance()->getTexture("pacman").getSize().x / 2, posPacman.y + TextureFactory::getInstance()->getTexture("pacman").getSize().y);
         window.fenetre.draw(spritePacman);
         window.fenetre.draw(spriteGhost);
     }
 
     void movePacman(sf::Event event);
     void moveGhost(sf::Event event);
+
+    private:
+        
+        /*void move(Vecteur2D deplacement, PElement<Sommet<VSommet>> * voisins, PeutSeDeplacer & foncteur, void (*fonctMove)() ){
+            foncteur.setDeplacement(deplacement);
+            PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
+            if(newSommet != nullptr){
+                fonctMove();
+                labyrinthe->setSommetCourant(newSommet->valeur);
+            }
+        }*/
+
 };
 #endif
