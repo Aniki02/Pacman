@@ -34,8 +34,8 @@
             ~FenetreGrapheSFML(){}
     };
     
-    template<>
-    bool FenetreGrapheSFML::dessine<VSommet>(const Sommet<VSommet> *sommet){
+    template<class T>
+    bool FenetreGrapheSFML::dessine(const Sommet<T> *sommet){
         return dessinePetitRond(this->fenetre,this->t, sommet->v);
     }
 

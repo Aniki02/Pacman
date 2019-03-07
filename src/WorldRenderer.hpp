@@ -29,7 +29,7 @@ public:
 
     template<class FENETRE>
     void render(FENETRE & window){
-        if(_labyrinthe->getGraphe()->dessine(window)){
+        if(_labyrinthe->getGraphe()->dessine(window) && _labyrinthe->getPacGomme()->dessineToutSommets(window)){
            
             Vecteur2D posPacman = window.t.applique(_world->getPacman()->getPosition());
             _spritePacman.setPosition(posPacman.x - TextureFactory::getInstance()->getTexture("pacman").getSize().x / 2, posPacman.y + TextureFactory::getInstance()->getTexture("pacman").getSize().y);

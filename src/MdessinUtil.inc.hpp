@@ -9,26 +9,27 @@
 
     #include    "Sommet.hpp"
     #include    "Arete.hpp"
-    #include    "VSommet.hpp"
+    //#include    "VSommet.hpp"
     #include    "Peinture.hpp"
     using namespace sf;
 
 inline const Vector2f vecteur2DToVector2f( const Vecteur2D & v) { float x,y; v.arrondit(x,y); return Vector2f(x,y);}
 
-inline bool dessinePetitRond(RenderWindow & fenetre, const TransfoAffine2D & t, const VSommet & vSommet,
-							const Vecteur2D & deltaTextePixels = Vecteur2D(VSommet::rayonDisquePixel, VSommet::rayonDisquePixel))
+template<class T>
+inline bool dessinePetitRond(RenderWindow & fenetre, const TransfoAffine2D & t, const T & v,
+							const Vecteur2D & deltaTextePixels = Vecteur2D(T::rayonDisquePixel, T::rayonDisquePixel))
 {
-    Vecteur2D position = t.applique(vSommet.pos);
-    Vecteur2D position1 = position -VSommet::rayonDisquePixel*Vecteur2D(1,1);
+    Vecteur2D position = t.applique(v.pos);
+    Vecteur2D position1 = position -T::rayonDisquePixel*Vecteur2D(1,1);
 
     // si on appliquait la transfo t globalement à tout le graphe avant de commencer à dessiner, on optimiserait
     // bcp de calculs !!!!
 
-    CircleShape disque((float)VSommet::rayonDisquePixel);
-    disque.setFillColor(Color(vSommet.couleur));
-    float epaisseurBord = (float)(0.15*VSommet::rayonDisquePixel);
+    CircleShape disque((float)T::rayonDisquePixel);
+    disque.setFillColor(Color(v.couleur));
+    float epaisseurBord = (float)(0.15*T::rayonDisquePixel);
     disque.setOutlineThickness(epaisseurBord);
-    disque.setOutlineColor(Color(VSommet::couleurBord));
+    disque.setOutlineColor(Color(T::couleurBord));
 
     Vector2f p1 = vecteur2DToVector2f(position1);
 
