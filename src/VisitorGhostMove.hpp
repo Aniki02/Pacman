@@ -1,7 +1,7 @@
 #ifndef _VISITORGHOSTMOVE_HPP
 #define _VISITORGHOSTMOVE_HPP
 
-#include "WorldRenderer.hpp"
+class WorldRenderer;
 
 
 class VisitorGhostMove{

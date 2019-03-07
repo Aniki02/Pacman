@@ -13,6 +13,7 @@
             Graphe<Peinture,VSommet> labyrinthe;
             Vecteur2D centre;
             Sommet<VSommet> * sommetCourant;
+            Sommet<VSommet> * sommetGhost;
             unsigned int complexite;
         public:
             LevelGenerator(const unsigned int color, const unsigned int color1, const unsigned int color2);
@@ -25,14 +26,17 @@
 
             const Sommet<VSommet> * getSommetCourant() const {return sommetCourant;}
             void setSommetCourant(Sommet<VSommet> * newSommetCourant){sommetCourant = newSommetCourant;}
+            const Sommet<VSommet> * getSommetGhost() const {return sommetGhost;}
+            void setSommetGhost(Sommet<VSommet> * newSommetGhost){sommetGhost = newSommetGhost;}
+
             array<Sommet<VSommet> *, 8> getVoisin() const{
                 PElement<Sommet<VSommet>> * voisins = this->labyrinthe.voisins(this->sommetCourant);
-                
-                
+
+
             }
         private:
-            
-            void generatorArete1(const int ligne, const int colonne, 
+
+            void generatorArete1(const int ligne, const int colonne,
                                 const unsigned int c1, const unsigned int c2,
                                 vector< Arete<Peinture, VSommet> *> ensembleAretes,
                                 vector<vector<Sommet<VSommet> *>> ensembleSommets);

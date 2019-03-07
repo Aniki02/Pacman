@@ -1,5 +1,7 @@
 #include "RandomMove.hpp"
 #include "WorldRenderer.hpp"
+#include "PElement.hpp"
+
 
 static const Vecteur2D NORTH(0,-1), NORTHEAST(-1, -1), EAST(-1,0),
                         SOUTHEAST(-1, 1), SOUTH(0, 1), SOUTHWEST(1, 1),
@@ -8,77 +10,77 @@ static const Vecteur2D NORTH(0,-1), NORTHEAST(-1, -1), EAST(-1,0),
 
 void RandomMove::visite(WorldRenderer * world){
     int v1 = rand() % 8 ;
-    PElement<Sommet<VSommet> > * voisins = world->labyrinthe->getGraphe()->voisins(world->labyrinthe->getSommetCourant());
+    PElement<Sommet<VSommet> > * voisins = world->labyrinthe->getGraphe()->voisins(world->labyrinthe->getSommetGhost());
 
         if(v1 == 0){
-            PeutSeDeplacer foncteur(world->labyrinthe->getSommetCourant()->v.pos, NORTHWEST);
+            PeutSeDeplacer foncteur(world->labyrinthe->getSommetGhost()->v.pos, NORTHWEST);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
             if(newSommet != nullptr){
 
                 world->_world->getGhost()->moveNorthWest();
-                world->labyrinthe->setSommetCourant(newSommet->valeur);
+                world->labyrinthe->setSommetGhost(newSommet->valeur);
             }
         }
 
 
         if(v1 == 1){
 
-            PeutSeDeplacer foncteur(world->labyrinthe->getSommetCourant()->v.pos, NORTH);
+            PeutSeDeplacer foncteur(world->labyrinthe->getSommetGhost()->v.pos, NORTH);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
             if(newSommet != nullptr){
                 world->_world->getGhost()->moveNorth();
-                world->labyrinthe->setSommetCourant(newSommet->valeur);
+                world->labyrinthe->setSommetGhost(newSommet->valeur);
             }
 
         }
 
         if(v1 == 2){
-            PeutSeDeplacer foncteur(world->labyrinthe->getSommetCourant()->v.pos, NORTHEAST);
+            PeutSeDeplacer foncteur(world->labyrinthe->getSommetGhost()->v.pos, NORTHEAST);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
             if(newSommet != nullptr){
                 world->_world->getGhost()->moveNorthEast();
-                world->labyrinthe->setSommetCourant(newSommet->valeur);
+                world->labyrinthe->setSommetGhost(newSommet->valeur);
             }
         }
 
         if(v1 == 3){
-            PeutSeDeplacer foncteur(world->labyrinthe->getSommetCourant()->v.pos, EAST);
+            PeutSeDeplacer foncteur(world->labyrinthe->getSommetGhost()->v.pos, EAST);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
             if(newSommet != nullptr){
                 world->_world->getGhost()->moveEast();
-                world->labyrinthe->setSommetCourant(newSommet->valeur);
+                world->labyrinthe->setSommetGhost(newSommet->valeur);
             }
         }
         if(v1 == 4){
-            PeutSeDeplacer foncteur(world->labyrinthe->getSommetCourant()->v.pos, SOUTHEAST);
+            PeutSeDeplacer foncteur(world->labyrinthe->getSommetGhost()->v.pos, SOUTHEAST);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
             if(newSommet != nullptr){
                 world->_world->getGhost()->moveSouthEast();
-                world->labyrinthe->setSommetCourant(newSommet->valeur);
+                world->labyrinthe->setSommetGhost(newSommet->valeur);
             }
         }
-        if(v1 = 5){
-            PeutSeDeplacer foncteur(world->labyrinthe->getSommetCourant()->v.pos, SOUTH);
+        if(v1 == 5){
+            PeutSeDeplacer foncteur(world->labyrinthe->getSommetGhost()->v.pos, SOUTH);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
             if(newSommet != nullptr){
                 world->_world->getGhost()->moveSouth();
-                world->labyrinthe->setSommetCourant(newSommet->valeur);
+                world->labyrinthe->setSommetGhost(newSommet->valeur);
             }
         }
         if(v1 == 6){
-            PeutSeDeplacer foncteur(world->labyrinthe->getSommetCourant()->v.pos, SOUTHWEST);
+            PeutSeDeplacer foncteur(world->labyrinthe->getSommetGhost()->v.pos, SOUTHWEST);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
             if(newSommet != nullptr){
                 world->_world->getGhost()->moveSouthWest();
-                world->labyrinthe->setSommetCourant(newSommet->valeur);
+                world->labyrinthe->setSommetGhost(newSommet->valeur);
             }
         }
         if(v1 == 7){
-            PeutSeDeplacer foncteur(world->labyrinthe->getSommetCourant()->v.pos, WEST);
+            PeutSeDeplacer foncteur(world->labyrinthe->getSommetGhost()->v.pos, WEST);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
             if(newSommet != nullptr){
                 world->_world->getGhost()->moveWest();
-                world->labyrinthe->setSommetCourant(newSommet->valeur);
+                world->labyrinthe->setSommetGhost(newSommet->valeur);
             }
         }
     }

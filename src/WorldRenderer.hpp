@@ -8,7 +8,10 @@
 #include "LevelGenerator.hpp"
 #include "VisitorGhostMove.hpp"
 
+class VisitorGhostMove;
+
 using namespace sf;
+
 class WorldRenderer{
 public:
     World * _world;
@@ -34,6 +37,8 @@ public:
         bool ok = labyrinthe->getGraphe()->dessine(window);
         Vecteur2D posPacman = window.t.applique(_world->getPacman()->getPosition());
         spritePacman.setPosition(posPacman.x - TextureFactory::getInstance()->getTexture("pacman").getSize().x / 2, posPacman.y + TextureFactory::getInstance()->getTexture("pacman").getSize().y);
+        Vecteur2D posGhost = window.t.applique(_world->getGhost()->getPosition());
+        spriteGhost.setPosition(posGhost.x - TextureFactory::getInstance()->getTexture("ghost").getSize().x / 2, posGhost.y + TextureFactory::getInstance()->getTexture("ghost").getSize().y);
         window.fenetre.draw(spritePacman);
         window.fenetre.draw(spriteGhost);
     }
@@ -42,7 +47,7 @@ public:
     void moveGhost(sf::Event event);
 
     void accepteMove(VisitorGhostMove * v){
-//        v->visite(this);
+        v->visite(this);
     }
     private:
 

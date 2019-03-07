@@ -10,11 +10,12 @@
 #include "TextureFactory.hpp"
 #include "WorldRenderer.hpp"
 #include "FaxeRepereMonde.hpp"
+#include "RandomMove.hpp"
 
 using namespace sf;
 int main(){
     WorldRenderer * wr = new WorldRenderer();
-    
+
 
     string titre("Labyrinthe");
     int largeur = 800, hauteur = 500;
@@ -22,12 +23,14 @@ int main(){
     unsigned int fondCarte = 0xEFEFEFFF;	// sorte de gris clair ~= étain pur
     PElement< Sommet<VSommet> > * voisins = wr->labyrinthe->getGraphe()->voisins(wr->labyrinthe->getSommetCourant());
     FaxeRepereMonde fenetreGraphe( titre, fondCarte, coinBG, coinHD, largeur, hauteur);
-
+     VisitorGhostMove * visiteur = new RandomMove();
 
     while (fenetreGraphe.fenetre.isOpen()){
         sf::Event event;
+
         while(fenetreGraphe.fenetre.pollEvent(event)){
             wr->update(event);
+            wr->accepteMove(visiteur);
             if(event.type == sf::Event::EventType::Closed)
                 fenetreGraphe.fenetre.close();
         }
