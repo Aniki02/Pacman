@@ -32,6 +32,8 @@ class PElement{
         template< class FONCTEUR>
         static PElement<T> * appartient(PElement<T> * l, const FONCTEUR & condition);
 };
+
+
 /**     Implementation ****/
 template <class T>
 PElement<T>::PElement(PElement<T> *s, T *v){

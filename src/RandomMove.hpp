@@ -7,8 +7,9 @@
 class WorldRenderer;
 
 class RandomMove : public VisitorGhostMove{
-
-void visite(WorldRenderer * world);
+public:
+    void visite(WorldRenderer * world);
+    Vecteur2D direction(Vecteur2D sommetDepart, Vecteur2D sommetArrive);
 
 };
 

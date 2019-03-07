@@ -7,9 +7,5 @@ GameElement::GameElement(const string & name){
     _position = Vecteur2D(1,3);
 }
 
-void GameElement::setPosition(Vecteur2D newPosition){
-    _position = newPosition;
-}
-void GameElement::setPosition(float x, float y){
-    _position = Vecteur2D(x, y);
-}
+void GameElement::setPosition(Vecteur2D newPosition){_position = newPosition;}
+void GameElement::setPosition(float x, float y){_position = Vecteur2D(x, y);}

@@ -19,9 +19,7 @@
             LevelGenerator(const unsigned int color, const unsigned int color1, const unsigned int color2);
             LevelGenerator( unsigned int complexite, const unsigned int color, const unsigned int color1, const unsigned int color2);
 
-            Graphe<Peinture,VSommet>  * getGraphe(){
-                return &this->labyrinthe;
-            }
+            Graphe<Peinture,VSommet>  * getGraphe(){return &this->labyrinthe;}
             ~LevelGenerator();
 
             const Sommet<VSommet> * getSommetCourant() const {return sommetCourant;}
@@ -29,11 +27,6 @@
             const Sommet<VSommet> * getSommetGhost() const {return sommetGhost;}
             void setSommetGhost(Sommet<VSommet> * newSommetGhost){sommetGhost = newSommetGhost;}
 
-            array<Sommet<VSommet> *, 8> getVoisin() const{
-                PElement<Sommet<VSommet>> * voisins = this->labyrinthe.voisins(this->sommetCourant);
-
-
-            }
         private:
 
             void generatorArete1(const int ligne, const int colonne,

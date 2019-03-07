@@ -16,7 +16,7 @@
             Vecteur2D pos; //position 0 : posX; 1 : posY
         public:
             VSommet(const std::string & nom, const Vecteur2D & p, const unsigned int couleur = 0xFF0000FF):
-            nom(nom), pos(p), couleur(couleur){}
+            nom(nom), couleur(couleur), pos(p){}
 
             virtual operator std::string()const{
                 std::ostringstream os;
@@ -27,7 +27,7 @@
             friend std::ostream & operator <<(std::ostream &o, const VSommet & vs){
                 return o<<(std::string)vs;
             }
-            ~VSommet(){}
+            virtual ~VSommet(){}
     };
     
 #endif

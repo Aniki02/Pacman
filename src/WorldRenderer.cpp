@@ -4,104 +4,54 @@
 #include "VisitorGhostMove.hpp"
 #include "RandomMove.hpp"
 
-static const Vecteur2D NORTH(0,-1), NORTHEAST(-1, -1), EAST(-1,0),
-                        SOUTHEAST(-1, 1), SOUTH(0, 1), SOUTHWEST(1, 1),
-                        WEST(1,0), NORTHWEST(1, -1);
+
+static const Vecteur2D NORTH(0,1), NORTHEAST(1, 1), EAST(1,0),SOUTHEAST(1, -1), SOUTH(0, -1), SOUTHWEST(-1, -1),
+                        WEST(-1,0), NORTHWEST(-1, 1);
+
+WorldRenderer::WorldRenderer(){
+    _world = new World();
+    _spritePacman.setTexture(TextureFactory::getInstance()->getTexture(_world->getPacman()->getName()));
+    _spriteGhost.setTexture(TextureFactory::getInstance()->getTexture(_world->getGhost()->getName()));
+
+    unsigned int magenta = Color::Magenta.toInteger();		// récupère la couleur Magenta au format nombre entier non signé
+    unsigned int turquoise = 0x00CED1FF;	// couleur turquoise opaque. préfixe 0x pour héxadécimal. format RGBA
+    unsigned int vertCitron = 0x00FF00FF;
+    this->_labyrinthe = new LevelGenerator(7,magenta, turquoise, vertCitron);
+}
 
 void WorldRenderer::handleInput(sf::Event event){
-    this->movePacman(event);
     VisitorGhostMove * visiteur = new RandomMove();
     this->accepteMove(visiteur);
+    this->movePacman(event);
 }
 void WorldRenderer::update(sf::Event event){
-    VisitorGhostMove * visiteur = new RandomMove();
-    this->accepteMove(visiteur);
     this->handleInput(event);
 
 }
 
 
-
-
-
 void WorldRenderer::movePacman(sf::Event event){
     if(event.type == sf::Event::EventType::KeyPressed){
 
-        PElement<Sommet<VSommet> > * voisins = labyrinthe->getGraphe()->voisins(labyrinthe->getSommetCourant());
+        PElement<Sommet<VSommet> > * voisins = _labyrinthe->getGraphe()->voisins(_labyrinthe->getSommetCourant());
 
-        if(event.key.code == sf::Keyboard::A){
-            PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, NORTHWEST);
-            PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
-            if(newSommet != nullptr){
-
-                _world->getPacman()->moveNorthWest();
-                labyrinthe->setSommetCourant(newSommet->valeur);
-            }
-
-        }
-
-        if(event.key.code == sf::Keyboard::Z){
-
-            PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, NORTH);
-            PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
-            if(newSommet != nullptr){
-                _world->getPacman()->moveNorth();
-                labyrinthe->setSommetCourant(newSommet->valeur);
-            }
-
-        }
-
-        if(event.key.code == sf::Keyboard::E){
-            PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, NORTHEAST);
-            PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
-            if(newSommet != nullptr){
-                _world->getPacman()->moveNorthEast();
-                labyrinthe->setSommetCourant(newSommet->valeur);
-            }
-        }
-
-        if(event.key.code == sf::Keyboard::D){
-            PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, EAST);
-            PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
-            if(newSommet != nullptr){
-                _world->getPacman()->moveEast();
-                labyrinthe->setSommetCourant(newSommet->valeur);
-            }
-        }
-        if(event.key.code == sf::Keyboard::C){
-            PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, SOUTHEAST);
-            PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
-            if(newSommet != nullptr){
-                _world->getPacman()->moveSouthEast();
-                labyrinthe->setSommetCourant(newSommet->valeur);
-            }
-        }
-        if(event.key.code == sf::Keyboard::X){
-            PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, SOUTH);
-            PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
-            if(newSommet != nullptr){
-                _world->getPacman()->moveSouth();
-                labyrinthe->setSommetCourant(newSommet->valeur);
-            }
-        }
-        if(event.key.code == sf::Keyboard::W){
-            PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, SOUTHWEST);
-            PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
-            if(newSommet != nullptr){
-                _world->getPacman()->moveSouthWest();
-                labyrinthe->setSommetCourant(newSommet->valeur);
-            }
-        }
-        if(event.key.code == sf::Keyboard::Q){
-            PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, WEST);
-            PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
-            if(newSommet != nullptr){
-                _world->getPacman()->moveWest();
-                labyrinthe->setSommetCourant(newSommet->valeur);
-            }
-        }
+        if(event.key.code == sf::Keyboard::A){this->move(NORTHWEST, voisins);}
+        if(event.key.code == sf::Keyboard::Z){this->move(NORTH, voisins);}
+        if(event.key.code == sf::Keyboard::E){this->move(NORTHEAST, voisins);}
+        if(event.key.code == sf::Keyboard::D){this->move(EAST, voisins);}
+        if(event.key.code == sf::Keyboard::C){this->move(SOUTHEAST, voisins);}
+        if(event.key.code == sf::Keyboard::X){this->move(SOUTH, voisins);}
+        if(event.key.code == sf::Keyboard::W){this->move(SOUTHWEST, voisins);}
+        if(event.key.code == sf::Keyboard::Q){this->move(WEST, voisins);}
     }
-
 }
 
-// void WorldRenderer::moveGhost(sf::Event event){}
+void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<VSommet>> * voisins){
+    PeutSeDeplacer foncteur(_labyrinthe->getSommetCourant()->v.pos, -direction);
+    PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
+    if(newSommet != nullptr){
+        _world->getPacman()->move(direction);
+        _labyrinthe->setSommetCourant(newSommet->valeur);
+    }
+}
+

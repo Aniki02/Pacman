@@ -17,11 +17,10 @@ int main(){
     WorldRenderer * wr = new WorldRenderer();
 
 
-    string titre("Labyrinthe");
+    string titre("labyrinthe");
     int largeur = 800, hauteur = 500;
     Vecteur2D  coinBG(-1, -1), coinHD(9,9);
     unsigned int fondCarte = 0xEFEFEFFF;	// sorte de gris clair ~= étain pur
-    PElement< Sommet<VSommet> > * voisins = wr->labyrinthe->getGraphe()->voisins(wr->labyrinthe->getSommetCourant());
     FaxeRepereMonde fenetreGraphe( titre, fondCarte, coinBG, coinHD, largeur, hauteur);
 
     while (fenetreGraphe.fenetre.isOpen()){

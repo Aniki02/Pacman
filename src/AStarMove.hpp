@@ -3,7 +3,7 @@
 #include "WorldRenderer.hpp"
 class AStarMove : public VisitorGhostMove{
 
-void visite(WorldRenderer * world));
+    void visite(WorldRenderer * world);
 
 };
 

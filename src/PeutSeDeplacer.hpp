@@ -5,8 +5,7 @@
 #include "Sommet.hpp"
 #include "VSommet.hpp"
 
-class PeutSeDeplacer
-{
+class PeutSeDeplacer{
 public:
     Vecteur2D deplacement, posActuel;
     PeutSeDeplacer(Vecteur2D d, Vecteur2D pa) : deplacement(d), posActuel(pa){}

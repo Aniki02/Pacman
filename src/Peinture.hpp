@@ -23,7 +23,7 @@
             friend std::ostream & operator<<(std::ostream &o, const Peinture &p){
                 return o<<(std::string)p;
             }
-            ~Peinture(){}
+            virtual ~Peinture(){}
     };
     
 #endif
