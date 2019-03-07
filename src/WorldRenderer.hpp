@@ -2,6 +2,7 @@
 #define _WORLDRENDERER_HPP
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "World.hpp"
 #include "TextureFactory.hpp"
 #include "PeutSeDeplacer.hpp"
@@ -47,6 +48,7 @@ public:
     void moveGhost(sf::Event event);
 
     void accepteMove(VisitorGhostMove * v){
+        std::cout << "acceptre move ok" << std::endl;
         v->visite(this);
     }
     private:

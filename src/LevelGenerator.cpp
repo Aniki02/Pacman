@@ -17,6 +17,7 @@
         }
         //choisis la tete de la liste comme sommet courant
         sommetCourant = this->labyrinthe.lSommets->valeur;
+        sommetGhost = this->labyrinthe.lSommets->valeur;
 
         vector< Arete<Peinture, VSommet> *> ensembleAretes;
         this->generatorArete1(ensembleSommets.size(), nbCase.size(), color1, color2, ensembleAretes, ensembleSommets);

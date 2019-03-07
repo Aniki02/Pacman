@@ -10,7 +10,9 @@ static const Vecteur2D NORTH(0,-1), NORTHEAST(-1, -1), EAST(-1,0),
 
 void RandomMove::visite(WorldRenderer * world){
     int v1 = rand() % 8 ;
+    std::cout << "avant getSommetGhost" << std::endl;
     PElement<Sommet<VSommet> > * voisins = world->labyrinthe->getGraphe()->voisins(world->labyrinthe->getSommetGhost());
+    std::cout << world->labyrinthe->getSommetGhost() << std::endl;
 
         if(v1 == 0){
             PeutSeDeplacer foncteur(world->labyrinthe->getSommetGhost()->v.pos, NORTHWEST);

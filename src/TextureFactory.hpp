@@ -15,10 +15,10 @@ class TextureFactory : public Singleton<TextureFactory>{
     map<string, sf::Texture> _textures;
 private:
     TextureFactory(){
-        if (!_pacman.loadFromFile("pacman/texture/pacman.png"))
+        if (!_pacman.loadFromFile("texture/pacman.png"))
             throw Erreur("impossible de charger pacman");
 
-        if (!_ghost.loadFromFile("pacman/texture/ghost.png"))
+        if (!_ghost.loadFromFile("texture/ghost.png"))
             throw Erreur("impossible de charger ghost");
 
         _textures["pacman"] = _pacman;

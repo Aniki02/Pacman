@@ -1,15 +1,23 @@
 #include "WorldRenderer.hpp"
 #include <iostream>
 #include "PElement.hpp"
+#include "VisitorGhostMove.hpp"
+#include "RandomMove.hpp"
+
 static const Vecteur2D NORTH(0,-1), NORTHEAST(-1, -1), EAST(-1,0),
                         SOUTHEAST(-1, 1), SOUTH(0, 1), SOUTHWEST(1, 1),
                         WEST(1,0), NORTHWEST(1, -1);
 
 void WorldRenderer::handleInput(sf::Event event){
     this->movePacman(event);
+    VisitorGhostMove * visiteur = new RandomMove();
+    this->accepteMove(visiteur);
 }
 void WorldRenderer::update(sf::Event event){
+    VisitorGhostMove * visiteur = new RandomMove();
+    this->accepteMove(visiteur);
     this->handleInput(event);
+
 }
 
 
