@@ -1,7 +1,7 @@
 #include "WorldRenderer.hpp"
 #include <iostream>
 #include "PElement.hpp"
-static const Vecteur2D NORTH(0,-1), NORTHEAST(-1, -1), EAST(-1,0), 
+static const Vecteur2D NORTH(0,-1), NORTHEAST(-1, -1), EAST(-1,0),
                         SOUTHEAST(-1, 1), SOUTH(0, 1), SOUTHWEST(1, 1),
                         WEST(1,0), NORTHWEST(1, -1);
 
@@ -25,7 +25,7 @@ void WorldRenderer::movePacman(sf::Event event){
             PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, NORTHWEST);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
             if(newSommet != nullptr){
-                
+
                 _world->getPacman()->moveNorthWest();
                 labyrinthe->setSommetCourant(newSommet->valeur);
             }
@@ -42,7 +42,7 @@ void WorldRenderer::movePacman(sf::Event event){
             }
 
         }
-        
+
         if(event.key.code == sf::Keyboard::E){
             PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, NORTHEAST);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
@@ -51,7 +51,7 @@ void WorldRenderer::movePacman(sf::Event event){
                 labyrinthe->setSommetCourant(newSommet->valeur);
             }
         }
-       
+
         if(event.key.code == sf::Keyboard::D){
             PeutSeDeplacer foncteur(labyrinthe->getSommetCourant()->v.pos, EAST);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
@@ -93,5 +93,7 @@ void WorldRenderer::movePacman(sf::Event event){
             }
         }
     }
+
 }
+
 // void WorldRenderer::moveGhost(sf::Event event){}

@@ -6,6 +6,7 @@
 #include "TextureFactory.hpp"
 #include "PeutSeDeplacer.hpp"
 #include "LevelGenerator.hpp"
+#include "VisitorGhostMove.hpp"
 
 using namespace sf;
 class WorldRenderer{
@@ -13,7 +14,7 @@ public:
     World * _world;
     sf::Sprite spritePacman, spriteGhost;
     LevelGenerator * labyrinthe;
-public: 
+public:
     WorldRenderer(){
         _world = new World();
         spritePacman.setTexture(TextureFactory::getInstance()->getTexture(_world->getPacman()->getName()));
@@ -40,8 +41,11 @@ public:
     void movePacman(sf::Event event);
     void moveGhost(sf::Event event);
 
+    void accepteMove(VisitorGhostMove * v){
+//        v->visite(this);
+    }
     private:
-        
+
         /*void move(Vecteur2D deplacement, PElement<Sommet<VSommet>> * voisins, PeutSeDeplacer & foncteur, void (*fonctMove)() ){
             foncteur.setDeplacement(deplacement);
             PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);

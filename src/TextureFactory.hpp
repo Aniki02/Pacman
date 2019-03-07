@@ -13,14 +13,14 @@ class TextureFactory : public Singleton<TextureFactory>{
     friend class Singleton<TextureFactory>;
     sf::Texture _pacman, _ghost;
     map<string, sf::Texture> _textures;
-private: 
+private:
     TextureFactory(){
-        if (!_pacman.loadFromFile("texture/pacman.png"))
+        if (!_pacman.loadFromFile("pacman/texture/pacman.png"))
             throw Erreur("impossible de charger pacman");
 
-        if (!_ghost.loadFromFile("texture/ghost.png"))
+        if (!_ghost.loadFromFile("pacman/texture/ghost.png"))
             throw Erreur("impossible de charger ghost");
-        
+
         _textures["pacman"] = _pacman;
         _textures["ghost"] = _ghost;
     }
