@@ -49,6 +49,12 @@ void WorldRenderer::movePacman(sf::Event event){
 }
 void WorldRenderer::moveGhost(){
     if(time > 300){
+        PElement<Arete<Peinture, VSommet>> * aretes = _labyrinthe->getGraphe()->lAretes;
+        while(aretes->suivant != nullptr){
+            if(aretes->valeur->v.devant > 0xFF000000 + 30)
+                aretes->valeur->v.devant-= 30;
+            aretes = aretes->suivant;
+        }
         VisitorGhostMove * visiteur = new RandomMove();
         this->accepteMove(visiteur);
         time = 0;
@@ -64,6 +70,7 @@ void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<VSommet>> * voisin
         _world->getPacman()->move(direction);
         if(_labyrinthe->getSommetCourant() != newSommet->valeur)
             _labyrinthe->getGraphe()->getAreteParSommets(_labyrinthe->getSommetCourant(),newSommet->valeur)->v.devant=0xFF0000FF;
+        // On augmente le score seulement si sommet n'a jamais étais visité
         if(!_labyrinthe->getSommetCourant()->v.isVisited){
             _labyrinthe->getSommetCourant()->v.couleur = 0x000000FF;
             score++;
