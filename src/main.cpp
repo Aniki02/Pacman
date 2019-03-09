@@ -23,6 +23,10 @@ int main(){
     unsigned int fondCarte = 0xEFEFEFFF;	// sorte de gris clair ~= étain pur
     FaxeRepereMonde fenetreGraphe( titre, fondCarte, coinBG, coinHD, largeur, hauteur);
 
+    /*sf::Sprite spriteWinner;
+    spriteWinner.setTexture(TextureFactory::getInstance()->getTexture("winner"));
+    fenetreGraphe.fenetre.draw(spriteWinner);*/
+
     while (fenetreGraphe.fenetre.isOpen()){
         sf::Event event;
 

@@ -12,7 +12,6 @@
     {
         private:
             Graphe<Peinture,VSommet> labyrinthe;
-            Graphe<Peinture, PacGomme> pacGomme;
 
             Vecteur2D centre;
             Sommet<VSommet> * sommetCourant;
@@ -23,13 +22,12 @@
             LevelGenerator( unsigned int complexite, const unsigned int color, const unsigned int color1, const unsigned int color2);
 
             Graphe<Peinture,VSommet>  * getGraphe(){return &this->labyrinthe;}
-            Graphe<Peinture,PacGomme>  * getPacGomme(){return &this->pacGomme;}
 
             ~LevelGenerator();
 
-            const Sommet<VSommet> * getSommetCourant() const {return sommetCourant;}
+            Sommet<VSommet> * getSommetCourant()const{return sommetCourant;}
             void setSommetCourant(Sommet<VSommet> * newSommetCourant){sommetCourant = newSommetCourant;}
-            const Sommet<VSommet> * getSommetGhost() const {return sommetGhost;}
+            Sommet<VSommet> * getSommetGhost() const {return sommetGhost;}
             void setSommetGhost(Sommet<VSommet> * newSommetGhost){sommetGhost = newSommetGhost;}
 
         private:
@@ -43,8 +41,6 @@
                                 const unsigned int c1, const unsigned int c2,
                                 vector< Arete<Peinture, VSommet> *> ensembleAretes,
                                 vector<vector<Sommet<VSommet> *>> ensembleSommets);
-            void generatorPacGomme(vector<Sommet<PacGomme> *> &nCase, 
-                                    vector<vector<Sommet<PacGomme> *>> &ensemblePacGomme);
             void generatorSommets(vector<Sommet<VSommet> *> &nCase, 
                                     vector<vector<Sommet<VSommet> *>> &ensembleSommets, const unsigned int c);
     };

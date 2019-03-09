@@ -10,10 +10,8 @@ LevelGenerator::LevelGenerator(const unsigned int color, const unsigned int colo
 
     /** Tableau de pacGomme */
     vector<Sommet<PacGomme> *> nCase(complexite);
-    vector<vector<Sommet<PacGomme> *>> ensemblePG(complexite, nCase);
 
-    this->generatorPacGomme(nCase, ensemblePG);
-    this->generatorSommets(nbCase, ensembleSommets, color);
+    //this->generatorSommets(nbCase, ensembleSommets, color);
 
     this->generatorSommets(nbCase, ensembleSommets, color);
     
@@ -22,7 +20,7 @@ LevelGenerator::LevelGenerator(const unsigned int color, const unsigned int colo
     this->generatorArete21(ensembleSommets.size(), nbCase.size(), color1, color2, ensembleAretes, ensembleSommets);
 }
 
-//////////////// CONSTRUCTEUR 2 ////////////////////////////:
+//////////////// CONSTRUCTEUR 2 ////////////////////////////
 
 LevelGenerator::LevelGenerator( unsigned int complexite, const unsigned int color, const unsigned int color1, const unsigned int color2)
 {
@@ -34,13 +32,16 @@ LevelGenerator::LevelGenerator( unsigned int complexite, const unsigned int colo
     vector<Sommet<PacGomme> *> nCase(complexite);
     vector<vector<Sommet<PacGomme> *>> ensemblePG(complexite, nCase);
 
-    this->generatorPacGomme(nCase, ensemblePG);
     this->generatorSommets(nbCase, ensembleSommets, color);
     sommetCourant = nullptr;
 
-    //choisis la tete de la liste comme sommet courant
-    sommetCourant = this->labyrinthe.lSommets->valeur;
-    sommetGhost = this->labyrinthe.lSommets->valeur;
+    PElement<Sommet<VSommet> > * temp = labyrinthe.lSommets;
+    //choisis la dernier element de la liste comme sommet courant car c'est le premier sommet en bas a gauche
+    while (temp->suivant != nullptr)
+        temp = temp->suivant;
+
+    sommetCourant = temp->valeur;
+    sommetGhost = temp->valeur;
 
     vector< Arete<Peinture, VSommet> *> ensembleAretes;
     this->generatorArete1(ensembleSommets.size(), nbCase.size(), color1, color2, ensembleAretes, ensembleSommets);
@@ -108,18 +109,7 @@ void LevelGenerator::generatorArete21(const int ligne, const int colonne,
     }
 
 }
-void LevelGenerator::generatorPacGomme(vector<Sommet<PacGomme> *> &nCase, 
-                                    vector<vector<Sommet<PacGomme> *>> &ensemblePacGomme)
-{
-    for(int i(0); i<ensemblePacGomme.size(); i++){
-        for(int j(0); j<nCase.size(); j++){
-            int p = j;
-            Sommet<PacGomme> *s;
-            s = this->pacGomme.creeSommet(PacGomme(j, Vecteur2D(i+1,p+2)));
-            ensemblePacGomme[i][j] = s;
-        } 
-    }
-}
+
 void LevelGenerator::generatorSommets(vector<Sommet<VSommet> *> &nCase, 
                                     vector<vector<Sommet<VSommet> *>> &ensembleSommets, const unsigned int c)
 {
