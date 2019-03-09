@@ -14,9 +14,10 @@
             std::string nom;
             unsigned int couleur; //format rgba
             Vecteur2D pos; //position 0 : posX; 1 : posY
+            bool isVisited;
         public:
             VSommet(const std::string & nom, const Vecteur2D & p, const unsigned int couleur = 0xFF0000FF):
-            nom(nom), couleur(couleur), pos(p){}
+            nom(nom), couleur(couleur), pos(p), isVisited(false){}
 
             virtual operator std::string()const{
                 std::ostringstream os;

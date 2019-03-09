@@ -64,8 +64,11 @@ void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<VSommet>> * voisin
         _world->getPacman()->move(direction);
         if(_labyrinthe->getSommetCourant() != newSommet->valeur)
             _labyrinthe->getGraphe()->getAreteParSommets(_labyrinthe->getSommetCourant(),newSommet->valeur)->v.devant=0xFF0000FF;
-        _labyrinthe->getSommetCourant()->v.couleur = 0x000000FF;
-        score++;
+        if(!_labyrinthe->getSommetCourant()->v.isVisited){
+            _labyrinthe->getSommetCourant()->v.couleur = 0x000000FF;
+            score++;
+            _labyrinthe->getSommetCourant()->v.isVisited = true;
+        }
         _labyrinthe->setSommetCourant(newSommet->valeur);
     }
 }
