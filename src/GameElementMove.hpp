@@ -10,6 +10,6 @@ protected:
     GameElementMove(const string & name, int speed):GameElement(name), _speed(speed){}
     virtual ~GameElementMove(){}
 public:
-    void move(Vecteur2D direction){this->setPosition(this->getPosition() + direction);}
+    void move(Vecteur2D direction){this->setPosition(this->getPosition() + direction*_speed);}
 };
 #endif

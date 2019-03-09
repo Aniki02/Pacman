@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -Weffc++ -Wno-unknown-pragmas -std=c++11
+CFLAGS = -Wall -Wno-unknown-pragmas -std=c++11
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -lsfml-network
 SRC = src
 OBJ = obj

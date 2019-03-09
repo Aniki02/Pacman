@@ -1,5 +1,7 @@
 #include "LevelGenerator.hpp"
  
+
+ /////////////////////////////// GENERATE ///////////////////////////////////
 void LevelGenerator::generate(const unsigned int color, const unsigned int color1, const unsigned int color2){
 
     /** Tableau des sommets */
@@ -22,6 +24,7 @@ void LevelGenerator::generate(const unsigned int color, const unsigned int color
 }
 
 
+//////////////////////////////////////////////// GENERATOR ARETE 1 ////////////////////////////////////////////////////////////
 void LevelGenerator::generatorArete1(const int ligne, const int colonne,
                                         const unsigned int c1, const unsigned int c2,
                                         vector< Arete<Peinture, VSommet> *> ensembleAretes,
@@ -40,6 +43,8 @@ void LevelGenerator::generatorArete1(const int ligne, const int colonne,
         }
     }
 }
+
+///////////////////////////////////////////////// GENERATOR ARETE 2 /////////////////////////////////////////////////////////
 
 void LevelGenerator::generatorArete21(const int ligne, const int colonne, 
                             const unsigned int c1, const unsigned int c2,
@@ -78,6 +83,8 @@ void LevelGenerator::generatorArete21(const int ligne, const int colonne,
 
 }
 
+
+///////////////////////////////////////////////////////GENERATOR SOMMET /////////////////////////////////////////////////////
 void LevelGenerator::generatorSommets(vector<Sommet<VSommet> *> &nCase, 
                                     vector<vector<Sommet<VSommet> *>> &ensembleSommets, const unsigned int c)
 {

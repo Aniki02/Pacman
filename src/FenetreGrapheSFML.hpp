@@ -2,6 +2,7 @@
 #define __FENETREGRAPHESFML__
     
     #include "MdessinUtil.inc.hpp"
+    #include "VSommet.hpp"
     
     class FenetreGrapheSFML
     {

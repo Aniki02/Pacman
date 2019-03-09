@@ -5,10 +5,11 @@
 #include "RandomMove.hpp"
 #include "SnakeMove.hpp"
 
-
+//////////// Vecteur de direction //////////////
 static const Vecteur2D NORTH(0,1), NORTHEAST(1, 1), EAST(1,0),SOUTHEAST(1, -1), SOUTH(0, -1), SOUTHWEST(-1, -1),
                         WEST(-1,0), NORTHWEST(-1, 1);
 
+//////////////////////////////////////////// CONSTRUCTEUR ///////////////////////////////////////////////////////////////////////////
 WorldRenderer::WorldRenderer(){
     _world = new World();
     _spritePacman.setTexture(TextureFactory::getInstance()->getTexture(_world->getPacman()->getName()));
@@ -23,14 +24,23 @@ WorldRenderer::WorldRenderer(){
     this->_labyrinthe = new LevelGenerator(7,magenta, turquoise, rouge);
 }
 
+
+
+///////////////////////////////////////////// METHODE //////////////////////////////////////////////////////////////////////////////
+
+
+/////////////// HANDLE INPUT //////////////////
 void WorldRenderer::handleInput(sf::Event event){
     this->movePacman(event);
 }
+
+
+/////////////// UPDATE //////////////////
 void WorldRenderer::update(sf::Event event){
     this->handleInput(event);
 }
 
-
+/////////////// MOVE PACMAN //////////////////
 void WorldRenderer::movePacman(sf::Event event){
     
     if(event.type == sf::Event::EventType::KeyPressed){
@@ -48,21 +58,19 @@ void WorldRenderer::movePacman(sf::Event event){
     }
 
 }
+
+/////////////// MOVE GHOST //////////////////
 void WorldRenderer::moveGhost(){
-    if(time > 300){
+    if(time > 1){
         // baisse l'opacité de la couleur de chaque arete tant qu'elle n'est pas transparente
-        PElement<Arete<Peinture, VSommet>> * aretes = _labyrinthe->getGraphe()->lAretes;
-        while(aretes != nullptr){
-            if(aretes->valeur->v.devant > 0xFF000000 + 30)
-                aretes->valeur->v.devant-= 30;
-            aretes = aretes->suivant;
-        }
+        this->updateArete();
         VisitorGhostMove * visiteur = new SnakeMove();
         this->accepteMove(visiteur);
         time = 0;
     }  
 }
 
+/////////////// MOVE //////////////////
 void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<VSommet>> * voisins){
     PeutSeDeplacer foncteur(_labyrinthe->getSommetCourant()->v.pos, direction);
     PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
@@ -71,13 +79,28 @@ void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<VSommet>> * voisin
         _world->getPacman()->move(direction);
         if(_labyrinthe->getSommetCourant() != newSommet->valeur)
             _labyrinthe->getGraphe()->getAreteParSommets(_labyrinthe->getSommetCourant(),newSommet->valeur)->v.devant=0xFF0000FF;
-        // On augmente le score seulement si sommet n'a jamais étais visité
-        if(!_labyrinthe->getSommetCourant()->v.isVisited){
-            _labyrinthe->getSommetCourant()->v.couleur = 0x000000FF;
-            score++;
-            _labyrinthe->getSommetCourant()->v.isVisited = true;
-        }
+        this->updateScore();
         _labyrinthe->setSommetCourant(newSommet->valeur);
+    }
+}
+
+/////////////// UPDATE SCORE //////////////////
+void WorldRenderer::updateScore(){
+    // On augmente le score seulement si sommet n'a jamais étais visité
+    if(!_labyrinthe->getSommetCourant()->v.isVisited){
+        _labyrinthe->getSommetCourant()->v.couleur = 0x000000FF;
+        score++;
+        _labyrinthe->getSommetCourant()->v.isVisited = true;
+    }
+}
+
+/////////////// UPDATE ARETE //////////////////
+void WorldRenderer::updateArete(){
+    PElement<Arete<Peinture, VSommet>> * aretes = _labyrinthe->getGraphe()->lAretes;
+    while(aretes != nullptr){
+        if(aretes->valeur->v.devant > 0xFF000000 + 30)
+            aretes->valeur->v.devant-= 30;
+        aretes = aretes->suivant;
     }
 }
 

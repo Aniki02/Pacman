@@ -10,7 +10,7 @@
     {
         public:
             constexpr static int rayonDisquePixel = 10;
-            constexpr static unsigned int couleurBord = 0xA106884FF; //couleur violine opaque
+            constexpr static unsigned int couleurBord = 0xA10684FF; //couleur violine opaque
             std::string nom;
             unsigned int couleur; //format rgba
             Vecteur2D pos; //position 0 : posX; 1 : posY
