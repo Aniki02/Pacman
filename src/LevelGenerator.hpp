@@ -11,24 +11,29 @@
     class LevelGenerator
     {
         private:
-            Graphe<Peinture,VSommet> labyrinthe;
-
-            Vecteur2D centre;
-            Sommet<VSommet> * sommetCourant;
-            Sommet<VSommet> * sommetGhost;
-            unsigned int complexite;
+            Graphe<Peinture,VSommet> _labyrinthe;
+            Vecteur2D _centre;
+            Sommet<VSommet> * _sommetCourant;
+            Sommet<VSommet> * _sommetGhost;
+            unsigned int _complexite;
         public:
-            LevelGenerator(const unsigned int color, const unsigned int color1, const unsigned int color2);
-            LevelGenerator( unsigned int complexite, const unsigned int color, const unsigned int color1, const unsigned int color2);
+            LevelGenerator(const unsigned int color, const unsigned int color1, const unsigned int color2):_complexite(7){
+                this->generate(color, color1, color2);
+            }
+            LevelGenerator( unsigned int complexite, const unsigned int color, const unsigned int color1, const unsigned int color2):_complexite(complexite){
+                this->generate(color, color1, color2);
+            }
 
-            Graphe<Peinture,VSommet>  * getGraphe(){return &this->labyrinthe;}
+            void generate(const unsigned int color, const unsigned int color1, const unsigned int color2);
+
+            Graphe<Peinture,VSommet>  * getGraphe(){return &this->_labyrinthe;}
 
             ~LevelGenerator();
 
-            Sommet<VSommet> * getSommetCourant()const{return sommetCourant;}
-            void setSommetCourant(Sommet<VSommet> * newSommetCourant){sommetCourant = newSommetCourant;}
-            Sommet<VSommet> * getSommetGhost() const {return sommetGhost;}
-            void setSommetGhost(Sommet<VSommet> * newSommetGhost){sommetGhost = newSommetGhost;}
+            Sommet<VSommet> * getSommetCourant()const{return _sommetCourant;}
+            void setSommetCourant(Sommet<VSommet> * newSommetCourant){_sommetCourant = newSommetCourant;}
+            Sommet<VSommet> * getSommetGhost() const {return _sommetGhost;}
+            void setSommetGhost(Sommet<VSommet> * newSommetGhost){_sommetGhost = newSommetGhost;}
 
         private:
 

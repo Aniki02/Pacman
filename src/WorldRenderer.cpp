@@ -3,6 +3,7 @@
 #include "PElement.hpp"
 #include "VisitorGhostMove.hpp"
 #include "RandomMove.hpp"
+#include "SnakeMove.hpp"
 
 
 static const Vecteur2D NORTH(0,1), NORTHEAST(1, 1), EAST(1,0),SOUTHEAST(1, -1), SOUTH(0, -1), SOUTHWEST(-1, -1),
@@ -49,17 +50,17 @@ void WorldRenderer::movePacman(sf::Event event){
 }
 void WorldRenderer::moveGhost(){
     if(time > 300){
+        // baisse l'opacité de la couleur de chaque arete tant qu'elle n'est pas transparente
         PElement<Arete<Peinture, VSommet>> * aretes = _labyrinthe->getGraphe()->lAretes;
-        while(aretes->suivant != nullptr){
+        while(aretes != nullptr){
             if(aretes->valeur->v.devant > 0xFF000000 + 30)
                 aretes->valeur->v.devant-= 30;
             aretes = aretes->suivant;
         }
-        VisitorGhostMove * visiteur = new RandomMove();
+        VisitorGhostMove * visiteur = new SnakeMove();
         this->accepteMove(visiteur);
         time = 0;
-    }
-    
+    }  
 }
 
 void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<VSommet>> * voisins){

@@ -1,8 +1,13 @@
 
-#include "WorldRenderer.hpp"
-#include "VisitorGhostMove.hpp"
 #include "SnakeMove.hpp"
+#include "ChoixSommet.hpp"
+    void SnakeMove::visite(WorldRenderer * wr){
 
+        Sommet<VSommet> * sommetChoisi = ChoixSommet<VSommet>::choixSnake(wr->_labyrinthe->getGraphe(), wr->_labyrinthe->getSommetGhost());
+        Vecteur2D direction = this->direction(wr->_world->getGhost()->getPosition(), sommetChoisi->v.pos);
+        wr->_world->getGhost()->move(direction);
+        wr->_labyrinthe->setSommetGhost(sommetChoisi);
+    }
 
    /* void SnakeMove::visite(WorldRenderer * wr)
     {   if(wr->_labyrinthe->getSommetCourant() != wr->_labyrinthe->getSommetPrecedent())
