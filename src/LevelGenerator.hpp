@@ -7,7 +7,7 @@
     #include    "Peinture.hpp"
     #include    "VSommet.hpp"
     #include    "Vecteur2D.hpp"
-    #include    "PacGomme.hpp"
+  
     class LevelGenerator
     {
         private:
@@ -29,7 +29,7 @@
             void setSommetCourant(Sommet<VSommet> * newSommetCourant){sommetCourant = newSommetCourant;}
             Sommet<VSommet> * getSommetGhost() const {return sommetGhost;}
             void setSommetGhost(Sommet<VSommet> * newSommetGhost){sommetGhost = newSommetGhost;}
-
+            int getComplexite(){return this->complexite*this->complexite;}
         private:
 
             void generatorArete1(const int ligne, const int colonne,
