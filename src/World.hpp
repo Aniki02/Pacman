@@ -12,6 +12,7 @@ public:
     World(){
         _pacman = new Pacman();
         _ghost = new Ghost();
+        
     }
 
     Pacman * getPacman() const {return _pacman;}

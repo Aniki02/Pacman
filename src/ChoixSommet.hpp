@@ -10,7 +10,7 @@ class ChoixSommet{
 public:
 
     static Sommet<T> * choixRandom(Graphe<Peinture,T> * graphe, Sommet<T> * sommetCourant){
-        srand(time(0));
+        //srand(time(0));
         // On recherche les voisins
         PElement<Sommet<VSommet> > * voisins = graphe->voisins(sommetCourant);
         int numSommetAlea = rand() % (PElement<Sommet<VSommet>>::taille(voisins));

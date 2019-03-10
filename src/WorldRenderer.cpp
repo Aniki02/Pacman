@@ -22,6 +22,7 @@ WorldRenderer::WorldRenderer(){
     unsigned int rouge = 0xFF000000;  //rouge transparent
 
     this->_labyrinthe = new LevelGenerator(7,magenta, turquoise, rouge);
+    _world->getGhost()->setPosition(_labyrinthe->getSommetGhost()->v.pos);
 }
 
 

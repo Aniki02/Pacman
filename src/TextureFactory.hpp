@@ -11,7 +11,7 @@
 using namespace std;
 class TextureFactory : public Singleton<TextureFactory>{
     friend class Singleton<TextureFactory>;
-    sf::Texture _pacman, _ghost, _winner;
+    sf::Texture _pacman, _ghost, _winner, _loser;
     map<string, sf::Texture> _textures;
 private:
     TextureFactory(){
@@ -23,10 +23,14 @@ private:
 
         if (!_winner.loadFromFile("texture/winner.png"))
             throw Erreur("impossible de charger winner");
+        
+        if (!_loser.loadFromFile("texture/loser.png"))
+            throw Erreur("impossible de charger loser");
 
         _textures["pacman"] = _pacman;
         _textures["ghost"] = _ghost;
         _textures["winner"] = _winner;
+        _textures["loser"] = _loser;
     }
     
     ~TextureFactory(){}

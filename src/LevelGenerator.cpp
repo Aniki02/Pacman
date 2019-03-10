@@ -16,7 +16,7 @@ void LevelGenerator::generate(const unsigned int color, const unsigned int color
         temp = temp->suivant;
 
     _sommetCourant = temp->valeur;
-    _sommetGhost = temp->valeur;
+    _sommetGhost = _labyrinthe.lSommets->valeur;
 
     vector< Arete<Peinture, VSommet> *> ensembleAretes;
     this->generatorArete1(ensembleSommets.size(), nbCase.size(), color1, color2, ensembleAretes, ensembleSommets);

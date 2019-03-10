@@ -21,7 +21,16 @@ public:
             spriteWinner.setTexture(TextureFactory::getInstance()->getTexture("winner"));
             this->_window->fenetre.draw(spriteWinner);
         }else{
-            wr->render(*_window, elapsedTime);}
+                if(wr->_spritePacman.getLocalBounds().intersects(wr->_spriteGhost.getLocalBounds())){
+                    sf::Sprite spriteLoser;
+                    spriteLoser.setTexture(TextureFactory::getInstance()->getTexture("loser"));
+                    this->_window->fenetre.draw(spriteLoser);
+                    
+                }else {
+                    wr->render(*_window, elapsedTime);
+                    }
+            }
+
         } 
     bool winGame(){return wr->score >= 49;}
 };
