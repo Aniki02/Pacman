@@ -8,6 +8,11 @@ LevelGenerator::LevelGenerator(const unsigned int color, const unsigned int colo
     vector<Sommet<VSommet> *> nbCase(complexite);
     vector<vector<Sommet<VSommet> *>> ensembleSommets(complexite, nbCase);
 
+    /** Tableau de pacGomme */
+    vector<Sommet<PacGomme> *> nCase(complexite);
+
+    //this->generatorSommets(nbCase, ensembleSommets, color);
+
     this->generatorSommets(nbCase, ensembleSommets, color);
     
     vector< Arete<Peinture, VSommet> *> ensembleAretes;
@@ -17,11 +22,15 @@ LevelGenerator::LevelGenerator(const unsigned int color, const unsigned int colo
 
 //////////////// CONSTRUCTEUR 2 ////////////////////////////
 
-LevelGenerator::LevelGenerator( unsigned int complexite, const unsigned int color, const unsigned int color1, const unsigned int color2):complexite(complexite)
+LevelGenerator::LevelGenerator( unsigned int complexite, const unsigned int color, const unsigned int color1, const unsigned int color2)
 {
     /** Tableau des sommets */
     vector<Sommet<VSommet> *> nbCase(complexite);
     vector<vector<Sommet<VSommet> *>> ensembleSommets(complexite, nbCase);
+
+    /** Tableau de pacGomme */
+    vector<Sommet<PacGomme> *> nCase(complexite);
+    vector<vector<Sommet<PacGomme> *>> ensemblePG(complexite, nCase);
 
     this->generatorSommets(nbCase, ensembleSommets, color);
     sommetCourant = nullptr;

@@ -31,7 +31,7 @@ public:
 
     template<class FENETRE>
     void render(FENETRE & window){
-        if (score >= _labyrinthe->getComplexite()){
+        if (score >= 49){
             sf::Sprite spriteWinner;
             spriteWinner.setTexture(TextureFactory::getInstance()->getTexture("winner"));
             window.fenetre.draw(spriteWinner);
