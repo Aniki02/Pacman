@@ -3,8 +3,8 @@
 #include "ChoixSommet.hpp"
     void SnakeMove::visite(WorldRenderer * wr){
 
-        Sommet<VSommet> * sommetChoisi = ChoixSommet<VSommet>::choixSnake(wr->_labyrinthe->getGraphe(), wr->_labyrinthe->getSommetGhost());
-        Vecteur2D direction = this->direction(wr->_world->getGhost()->getPosition(), sommetChoisi->v.pos);
+        Sommet<InfoSommet> * sommetChoisi = ChoixSommet<InfoSommet>::choixSnake(wr->_labyrinthe->getGraphe(), wr->_labyrinthe->getSommetGhost());
+        Vecteur2D direction = this->direction(wr->_world->getGhost()->getPosition(), sommetChoisi->v.vSommet.pos);
         wr->_world->getGhost()->move(direction);
         wr->_labyrinthe->setSommetGhost(sommetChoisi);
     }

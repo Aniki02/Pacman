@@ -10,8 +10,9 @@
         public:
            unsigned int fond;
            unsigned int devant;
+           double cout;
         public:
-            Peinture(const unsigned int f, const unsigned int d):fond(f), devant(d){}
+            Peinture(const unsigned int f, const unsigned int d, double c):fond(f), devant(d), cout(c){}
 
             virtual operator std::string()const{
                 std::ostringstream os;

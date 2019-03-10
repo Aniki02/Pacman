@@ -2,7 +2,7 @@
 #define __FENETREGRAPHESFML__
     
     #include "MdessinUtil.inc.hpp"
-    #include "VSommet.hpp"
+    #include "InfoSommet.hpp"
     
     class FenetreGrapheSFML
     {
@@ -37,13 +37,13 @@
     
     template<class T>
     bool FenetreGrapheSFML::dessine(const Sommet<T> *sommet){
-        return dessinePetitRond(this->fenetre,this->t, sommet->v);
+        return dessinePetitRond(this->fenetre,this->t, sommet->v.vSommet);
     }
 
     template <>
-    bool FenetreGrapheSFML::dessine<Peinture,VSommet>(const Arete<Peinture,VSommet> * arete)
+    bool FenetreGrapheSFML::dessine<Peinture,InfoSommet>(const Arete<Peinture,InfoSommet> * arete)
     {
-        dessineSegment( this->fenetre, this->t,   arete->v.fond, arete->_debut->v.pos, arete->_fin->v.pos);
-        return dessineSegment( this->fenetre, this->t, arete->v.devant, arete->_debut->v.pos, arete->_fin->v.pos);
+        dessineSegment( this->fenetre, this->t,   arete->v.fond, arete->_debut->v.vSommet.pos, arete->_fin->v.vSommet.pos);
+        return dessineSegment( this->fenetre, this->t, arete->v.devant, arete->_debut->v.vSommet.pos, arete->_fin->v.vSommet.pos);
     }
 #endif

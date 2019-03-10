@@ -64,8 +64,8 @@ public:
                 _labyrinthe->initSommet();
                 _spritePacman.setPosition(100,0);
                 _spriteGhost.setPosition(300,300);
-                _world->getGhost()->setPosition(_labyrinthe->getSommetGhost()->v.pos);
-                _world->getPacman()->setPosition(_labyrinthe->getSommetCourant()->v.pos);
+                _world->getGhost()->setPosition(_labyrinthe->getSommetGhost()->v.vSommet.pos);
+                _world->getPacman()->setPosition(_labyrinthe->getSommetCourant()->v.vSommet.pos);
                 return false;
             }
             return true;
@@ -74,7 +74,7 @@ public:
         
     }
 private:
-    void move(Vecteur2D direction, PElement<Sommet<VSommet>> * voisins);
+    void move(Vecteur2D direction, PElement<Sommet<InfoSommet>> * voisins);
     void updateScore();
     void updateArete();
     template<class FENETRE>

@@ -25,8 +25,8 @@ WorldRenderer::WorldRenderer(){
     this->_labyrinthe = new LevelGenerator(7,magenta, turquoise, rouge);
     _spritePacman.setPosition(0,0);
     _spriteGhost.setPosition(300,300);
-    _world->getGhost()->setPosition(_labyrinthe->getSommetGhost()->v.pos);
-    _world->getPacman()->setPosition(_labyrinthe->getSommetCourant()->v.pos);
+    _world->getGhost()->setPosition(_labyrinthe->getSommetGhost()->v.vSommet.pos);
+    _world->getPacman()->setPosition(_labyrinthe->getSommetCourant()->v.vSommet.pos);
 }
 
 
@@ -50,7 +50,7 @@ void WorldRenderer::movePacman(sf::Event event){
     
     if(event.type == sf::Event::EventType::KeyPressed){
 
-        PElement<Sommet<VSommet> > * voisins = _labyrinthe->getGraphe()->voisins(_labyrinthe->getSommetCourant());
+        PElement<Sommet<InfoSommet> > * voisins = _labyrinthe->getGraphe()->voisins(_labyrinthe->getSommetCourant());
 
         if(event.key.code == sf::Keyboard::A){this->move(NORTHWEST, voisins);}
         if(event.key.code == sf::Keyboard::Z){this->move(NORTH, voisins);}
@@ -76,9 +76,9 @@ void WorldRenderer::moveGhost(){
 }
 
 /////////////// MOVE //////////////////
-void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<VSommet>> * voisins){
-    PeutSeDeplacer foncteur(_labyrinthe->getSommetCourant()->v.pos, direction);
-    PElement<Sommet <VSommet> > * newSommet = PElement<Sommet<VSommet> >::appartient(voisins, foncteur);
+void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<InfoSommet>> * voisins){
+    PeutSeDeplacer foncteur(_labyrinthe->getSommetCourant()->v.vSommet.pos, direction);
+    PElement<Sommet <InfoSommet> > * newSommet = PElement<Sommet<InfoSommet> >::appartient(voisins, foncteur);
 
     if(newSommet != nullptr){
         _world->getPacman()->move(direction);
@@ -92,19 +92,19 @@ void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<VSommet>> * voisin
 /////////////// UPDATE SCORE //////////////////
 void WorldRenderer::updateScore(){
     // On augmente le score seulement si sommet n'a jamais étais visité
-    if(!_labyrinthe->getSommetCourant()->v.isVisited){
-        _labyrinthe->getSommetCourant()->v.couleur = 0x000000FF;
+    if(!_labyrinthe->getSommetCourant()->v.vSommet.isVisited){
+        _labyrinthe->getSommetCourant()->v.vSommet.couleur = 0x000000FF;
         _score++;
-        _labyrinthe->getSommetCourant()->v.isVisited = true;
+        _labyrinthe->getSommetCourant()->v.vSommet.isVisited = true;
     }
 }
 
 /////////////// UPDATE ARETE //////////////////
 void WorldRenderer::updateArete(){
-    PElement<Arete<Peinture, VSommet>> * aretes = _labyrinthe->getGraphe()->lAretes;
+    PElement<Arete<Peinture, InfoSommet>> * aretes = _labyrinthe->getGraphe()->lAretes;
     while(aretes != nullptr){
         if(aretes->valeur->v.devant > 0xFF000000 + 30)
-            aretes->valeur->v.devant-= 30;
+            aretes->valeur->v.devant -= 30;
         aretes = aretes->suivant;
     }
 }
