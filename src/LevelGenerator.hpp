@@ -7,7 +7,6 @@
     #include    "Peinture.hpp"
     #include    "VSommet.hpp"
     #include    "Vecteur2D.hpp"
-    #include    "PacGomme.hpp"
     class LevelGenerator
     {
         private:
