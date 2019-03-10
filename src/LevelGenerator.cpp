@@ -10,13 +10,7 @@ void LevelGenerator::generate(const unsigned int color, const unsigned int color
     
     this->generatorSommets(nbCase, ensembleSommets, color);
 
-    PElement<Sommet<VSommet> > * temp = _labyrinthe.lSommets;
-    //choisis la dernier element de la liste comme sommet courant car c'est le premier sommet en bas a gauche
-    while (temp->suivant != nullptr)
-        temp = temp->suivant;
-
-    _sommetCourant = temp->valeur;
-    _sommetGhost = _labyrinthe.lSommets->valeur;
+   this->initSommet();
 
     vector< Arete<Peinture, VSommet> *> ensembleAretes;
     this->generatorArete1(ensembleSommets.size(), nbCase.size(), color1, color2, ensembleAretes, ensembleSommets);
@@ -96,4 +90,15 @@ void LevelGenerator::generatorSommets(vector<Sommet<VSommet> *> &nCase,
             ensembleSommets[i][j] = s;
         } 
     }
+}
+
+
+void LevelGenerator::initSommet(){
+    PElement<Sommet<VSommet> > * temp = _labyrinthe.lSommets;
+    //choisis la dernier element de la liste comme sommet courant car c'est le premier sommet en bas a gauche
+    while (temp->suivant != nullptr)
+        temp = temp->suivant;
+
+    _sommetCourant = temp->valeur;
+    _sommetGhost = _labyrinthe.lSommets->valeur;
 }

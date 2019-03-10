@@ -33,6 +33,7 @@
             void setSommetCourant(Sommet<VSommet> * newSommetCourant){_sommetCourant = newSommetCourant;}
             Sommet<VSommet> * getSommetGhost() const {return _sommetGhost;}
             void setSommetGhost(Sommet<VSommet> * newSommetGhost){_sommetGhost = newSommetGhost;}
+            void initSommet();
 
         private:
 

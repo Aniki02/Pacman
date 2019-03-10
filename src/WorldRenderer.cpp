@@ -14,15 +14,19 @@ WorldRenderer::WorldRenderer(){
     _world = new World();
     _spritePacman.setTexture(TextureFactory::getInstance()->getTexture(_world->getPacman()->getName()));
     _spriteGhost.setTexture(TextureFactory::getInstance()->getTexture(_world->getGhost()->getName()));
-    time = 0;
-    score = 1;
+    _time = 0;
+    _score = 1;
+    _nbVie = 3;
 
     unsigned int magenta = Color::Magenta.toInteger();		// récupère la couleur Magenta au format nombre entier non signé
     unsigned int turquoise = 0x00CED1FF;	// couleur turquoise opaque. préfixe 0x pour héxadécimal. format RGBA
     unsigned int rouge = 0xFF000000;  //rouge transparent
 
     this->_labyrinthe = new LevelGenerator(7,magenta, turquoise, rouge);
+    _spritePacman.setPosition(0,0);
+    _spriteGhost.setPosition(300,300);
     _world->getGhost()->setPosition(_labyrinthe->getSommetGhost()->v.pos);
+    _world->getPacman()->setPosition(_labyrinthe->getSommetCourant()->v.pos);
 }
 
 
@@ -62,12 +66,12 @@ void WorldRenderer::movePacman(sf::Event event){
 
 /////////////// MOVE GHOST //////////////////
 void WorldRenderer::moveGhost(){
-    if(time > 1){
+    if(_time > 1){
         // baisse l'opacité de la couleur de chaque arete tant qu'elle n'est pas transparente
         this->updateArete();
         VisitorGhostMove * visiteur = new SnakeMove();
         this->accepteMove(visiteur);
-        time = 0;
+        _time = 0;
     }  
 }
 
@@ -90,7 +94,7 @@ void WorldRenderer::updateScore(){
     // On augmente le score seulement si sommet n'a jamais étais visité
     if(!_labyrinthe->getSommetCourant()->v.isVisited){
         _labyrinthe->getSommetCourant()->v.couleur = 0x000000FF;
-        score++;
+        _score++;
         _labyrinthe->getSommetCourant()->v.isVisited = true;
     }
 }

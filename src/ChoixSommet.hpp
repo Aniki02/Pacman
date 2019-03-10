@@ -29,6 +29,7 @@ public:
         Arete<Peinture, T> * arete = graphe->getAreteParSommets(sommetChoisi, sommetCourant);
         //pour chaque voisins on compare son arete avec la premiere arete choisis et on garde celle qui a la couleur la plus élevé
         while(voisins!= nullptr){
+           
             Arete<Peinture, T> * areteVoisin = graphe->getAreteParSommets(voisins->valeur, sommetCourant);
             if(arete->v.devant < areteVoisin->v.devant){
                 arete = areteVoisin;
