@@ -49,8 +49,7 @@ public:
         Sommet<InfoSommet> * resultat;
 
         resultat = AStarT< Graphe<Peinture,InfoSommet>,Sommet<InfoSommet> >::aStar(graphe, depart,  OutilsCarte::hh);
-        PElement<Sommet<InfoSommet>> * c;
-        chemin(resultat, c);
+        PElement<Sommet<InfoSommet>> * c = chemin(resultat, c);
 
         return c->valeur;
     }
