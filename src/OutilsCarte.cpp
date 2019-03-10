@@ -1,4 +1,5 @@
 #include "OutilsCarte.hpp"
+#include "Peinture.hpp"
 using namespace std;
 
 /*static*/ double OutilsCarte::distance( const Sommet<InfoSommet> * s1, const Sommet<InfoSommet> * s2)
@@ -7,12 +8,12 @@ return norme(s1->v.vSommet.pos - s2->v.vSommet.pos);
 //return 0;
 }
 
-/*static*/ Arete<InfoArete, InfoSommet> *  OutilsCarte::creeArete(Sommet<InfoSommet> * sA, Sommet<InfoSommet> * sB, Graphe<InfoArete, InfoSommet> & graphe)
+/*static*/ Arete<Peinture, InfoSommet> *  OutilsCarte::creeArete(Sommet<InfoSommet> * sA, Sommet<InfoSommet> * sB, Graphe<Peinture, InfoSommet> & graphe)
 {
-return graphe.creeArete( InfoArete( OutilsCarte::distance(sA,sB) ), sA, sB);
+return graphe.creeArete( Peinture( 0x00CED1FF, 0xFF000000, OutilsCarte::distance(sA,sB) ), sA, sB);
 }
 
-/*static*/ void OutilsCarte::libereToutSommet(Graphe<InfoArete, InfoSommet> & graphe)
+/*static*/ void OutilsCarte::libereToutSommet(Graphe<Peinture, InfoSommet> & graphe)
 {
 PElement < Sommet<InfoSommet> > * l;
 
@@ -30,19 +31,19 @@ for (  l = graphe.lSommets; l ; l = l->suivant)
 return OutilsCarte::distance(s,OutilsCarte::cible);
 }
 
-/*static*/ PElement< pair<Sommet<InfoSommet>*,double> > * OutilsCarte::listeVoisins(const Sommet<InfoSommet> * s, const Graphe<InfoArete, InfoSommet> & graphe)
+/*static*/ PElement< pair<Sommet<InfoSommet>*,double> > * OutilsCarte::listeVoisins(const Sommet<InfoSommet> * s, const Graphe<Peinture, InfoSommet> & graphe)
 {
-PElement< pair < Sommet<InfoSommet> *, Arete<InfoArete,InfoSommet> * > > * ladj, *lA;						// pair < Sommet<InfoSommet> *, Arete<InfoArete,InfoSommet> * >
+PElement< pair < Sommet<InfoSommet> *, Arete<Peinture,InfoSommet> * > > * ladj, *lA;						// pair < Sommet<InfoSommet> *, Arete<Peinture,InfoSommet> * >
 
 ladj = graphe.adjacences(s);
 
 PElement< pair<Sommet<InfoSommet>*,double> > * lVC;
 
 for ( lA = ladj, lVC = NULL; lA; lA = lA->suivant)
-	lVC = new PElement< pair<Sommet<InfoSommet>*,double> >(lVC, new pair<Sommet<InfoSommet>*,double>(lA->valeur->first,lA->valeur->second->v.cout1));
+	lVC = new PElement< pair<Sommet<InfoSommet>*,double> >(lVC, new pair<Sommet<InfoSommet>*,double>(lA->valeur->first,lA->valeur->second->v.cout));
 
 
-PElement< pair< Sommet<InfoSommet> *, Arete<InfoArete,InfoSommet> * > >::efface2(ladj);
+PElement< pair< Sommet<InfoSommet> *, Arete<Peinture,InfoSommet> * > >::efface2(ladj);
 return lVC;
 
 }
@@ -96,12 +97,12 @@ return sommet == cible;
 
 
 
-void libereToutSommet(Graphe<InfoArete, InfoSommet> & graphe)
+void libereToutSommet(Graphe<Peinture, InfoSommet> & graphe)
 {
 return OutilsCarte::libereToutSommet(graphe);
 }
 
-PElement< pair<Sommet<InfoSommet>*,double> > * listeVoisins(const Sommet<InfoSommet> * s, const Graphe<InfoArete, InfoSommet> & graphe)
+PElement< pair<Sommet<InfoSommet>*,double> > * listeVoisins(const Sommet<InfoSommet> * s, const Graphe<Peinture, InfoSommet> & graphe)
 {
 return OutilsCarte::listeVoisins(s,graphe);
 }

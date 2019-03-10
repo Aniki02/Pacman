@@ -12,7 +12,7 @@
            unsigned int devant;
            double cout;
         public:
-            Peinture(const unsigned int f, const unsigned int d, double c):fond(f), devant(d), cout(c){}
+            Peinture(const unsigned int f , const unsigned int d, double c):fond(f), devant(d), cout(c){}
 
             virtual operator std::string()const{
                 std::ostringstream os;

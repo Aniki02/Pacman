@@ -33,7 +33,7 @@ public:
 
     template<class FENETRE, class TIME>
     void render(FENETRE & window, TIME elapsedTime){
-        if(_labyrinthe->getGraphe()->dessine(window)){
+        if(_labyrinthe->getGraphe().dessine(window)){
             _time+=elapsedTime.asSeconds();
             this->moveGhost();
 

@@ -3,7 +3,7 @@
 #include "AlgebreLineaire.hpp"
 #include "Sommet.hpp"
 #include "InfoSommet.hpp"
-#include "InfoArete.hpp"
+#include "Peinture.hpp"
 
 #include "Arete.hpp"
 
@@ -16,12 +16,12 @@ using namespace std;
 /**
 sert d'intermédiaire entre A* et une carte routière. Définit pour une carte routière, toutes les méthodes que
 réclame l'algo A*.
-L'information inscrite dans une arête est une InfoArete qui contient une couleur et la longueur de l'arête
+L'information inscrite dans une arête est une Peinture qui contient une couleur et la longueur de l'arête
 L'information inscrite dans un sommet est une InfoSommet qui contient 2 attributs : VSommet et InfoAStar.
 
 Par conséquent :
 
-Une carte routière est un Graphe <InfoArete, InfoSommet >
+Une carte routière est un Graphe <Peinture, InfoSommet >
 
 A savoir, A* réclame les méthodes suivantes :
 
@@ -41,10 +41,10 @@ class OutilsCarte
 {
 public:
 static double distance( const Sommet<InfoSommet> * s1, const Sommet<InfoSommet> * s2);
-static Arete<InfoArete, InfoSommet> *  creeArete(Sommet<InfoSommet> * sA, Sommet<InfoSommet> * sB,Graphe<InfoArete, InfoSommet> & graphe);
-static void libereToutSommet(Graphe<InfoArete, InfoSommet> & graphe);
+static Arete<Peinture, InfoSommet> *  creeArete(Sommet<InfoSommet> * sA, Sommet<InfoSommet> * sB,Graphe<Peinture, InfoSommet> & graphe);
+static void libereToutSommet(Graphe<Peinture, InfoSommet> & graphe);
 static double hh(const Sommet<InfoSommet> * s);
-static PElement< pair<Sommet<InfoSommet>*,double> > * listeVoisins(const Sommet<InfoSommet> * s, const Graphe<InfoArete, InfoSommet> & graphe);
+static PElement< pair<Sommet<InfoSommet>*,double> > * listeVoisins(const Sommet<InfoSommet> * s, const Graphe<Peinture, InfoSommet> & graphe);
 
 static Sommet<InfoSommet> *  pere( const Sommet<InfoSommet> * sommet);
 static Sommet<InfoSommet> * & pere( Sommet<InfoSommet> * sommet);
@@ -59,8 +59,8 @@ static bool estFinal(const Sommet<InfoSommet> * sommet);
 static Sommet<InfoSommet> * cible;
 };
 
-void libereToutSommet(Graphe<InfoArete, InfoSommet> & graphe);
-PElement< pair<Sommet<InfoSommet>*,double> > * listeVoisins(const Sommet<InfoSommet> * s, const Graphe<InfoArete, InfoSommet> & graphe);
+void libereToutSommet(Graphe<Peinture, InfoSommet> & graphe);
+PElement< pair<Sommet<InfoSommet>*,double> > * listeVoisins(const Sommet<InfoSommet> * s, const Graphe<Peinture, InfoSommet> & graphe);
 
 Sommet<InfoSommet> *  pere( const Sommet<InfoSommet> * sommet);
 Sommet<InfoSommet> * & pere( Sommet<InfoSommet> * sommet);

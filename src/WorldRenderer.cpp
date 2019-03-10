@@ -4,6 +4,7 @@
 #include "VisitorGhostMove.hpp"
 #include "RandomMove.hpp"
 #include "SnakeMove.hpp"
+#include "AStarMove.hpp"
 
 //////////// Vecteur de direction //////////////
 static const Vecteur2D NORTH(0,1), NORTHEAST(1, 1), EAST(1,0),SOUTHEAST(1, -1), SOUTH(0, -1), SOUTHWEST(-1, -1),
@@ -50,7 +51,7 @@ void WorldRenderer::movePacman(sf::Event event){
     
     if(event.type == sf::Event::EventType::KeyPressed){
 
-        PElement<Sommet<InfoSommet> > * voisins = _labyrinthe->getGraphe()->voisins(_labyrinthe->getSommetCourant());
+        PElement<Sommet<InfoSommet> > * voisins = _labyrinthe->getGraphe().voisins(_labyrinthe->getSommetCourant());
 
         if(event.key.code == sf::Keyboard::A){this->move(NORTHWEST, voisins);}
         if(event.key.code == sf::Keyboard::Z){this->move(NORTH, voisins);}
@@ -69,7 +70,7 @@ void WorldRenderer::moveGhost(){
     if(_time > 1){
         // baisse l'opacité de la couleur de chaque arete tant qu'elle n'est pas transparente
         this->updateArete();
-        VisitorGhostMove * visiteur = new SnakeMove();
+        VisitorGhostMove * visiteur = new AStarMove();
         this->accepteMove(visiteur);
         _time = 0;
     }  
@@ -83,7 +84,7 @@ void WorldRenderer::move(Vecteur2D direction, PElement<Sommet<InfoSommet>> * voi
     if(newSommet != nullptr){
         _world->getPacman()->move(direction);
         if(_labyrinthe->getSommetCourant() != newSommet->valeur)
-            _labyrinthe->getGraphe()->getAreteParSommets(_labyrinthe->getSommetCourant(),newSommet->valeur)->v.devant=0xFF0000FF;
+            _labyrinthe->getGraphe().getAreteParSommets(_labyrinthe->getSommetCourant(),newSommet->valeur)->v.devant=0xFF0000FF;
         this->updateScore();
         _labyrinthe->setSommetCourant(newSommet->valeur);
     }
@@ -101,7 +102,7 @@ void WorldRenderer::updateScore(){
 
 /////////////// UPDATE ARETE //////////////////
 void WorldRenderer::updateArete(){
-    PElement<Arete<Peinture, InfoSommet>> * aretes = _labyrinthe->getGraphe()->lAretes;
+    PElement<Arete<Peinture, InfoSommet>> * aretes = _labyrinthe->getGraphe().lAretes;
     while(aretes != nullptr){
         if(aretes->valeur->v.devant > 0xFF000000 + 30)
             aretes->valeur->v.devant -= 30;

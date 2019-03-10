@@ -81,7 +81,7 @@ PElement<Sommet> * Ouverts;
 
 pere(depart) = NULL; c(depart) = 0; // depart->h = h(depart,cible); depart->g = depart->c + depart->h; // ces 2 dernières affectations sont inutiles
 
-Ouverts = new PElement<Sommet>(depart,NULL); etat(depart) = OUVERT;
+Ouverts = new PElement<Sommet>(NULL,depart); etat(depart) = OUVERT;
 
 while(Ouverts)
 	{
@@ -92,11 +92,11 @@ while(Ouverts)
 	PElement< pair<Sommet*,double> > * listeDesVoisins = listeVoisins(s, graphe);
 	PElement< pair<Sommet*,double> > * l;
 
-	for( l = listeDesVoisins; l; l = l->s)		// on parcourt les voisins de s
+	for( l = listeDesVoisins; l; l = l->suivant)		// on parcourt les voisins de s
 		{
-		Sommet * v = l->v->first;	// v est le voisin courant de s
+		Sommet * v = l->valeur->first;	// v est le voisin courant de s
 
-		double nouveauCout = c(s) + l->v->second;			//l->v->second est le coût de l'arête s - v
+		double nouveauCout = c(s) + l->valeur->second;			//l->v->second est le coût de l'arête s - v
 
 		if (etat(v) == LIBRE)
 			{
@@ -155,7 +155,7 @@ PElement<Sommet> * Ouverts;
 
 pere(depart) = NULL; c(depart) = 0; // depart->h = h(depart,cible); depart->g = depart->c + depart->h; // ces 2 dernières affectations sont inutiles
 
-Ouverts = new PElement<Sommet>(depart,NULL); etat(depart) = OUVERT;
+Ouverts = new PElement<Sommet>(NULL,depart); etat(depart) = OUVERT;
 
 while(Ouverts)
 	{
@@ -166,11 +166,11 @@ while(Ouverts)
 	PElement< pair<Sommet*,double> > * listeDesVoisins = listeVoisins(s, graphe);
 	PElement< pair<Sommet*,double> > * l;
 
-	for( l = listeDesVoisins; l; l = l->s)		// on parcourt les voisins de s
+	for( l = listeDesVoisins; l; l = l->suivant)		// on parcourt les voisins de s
 		{
-		Sommet * v = l->v->first;	// v est le voisin courant de s
+		Sommet * v = l->valeur->first;	// v est le voisin courant de s
 
-		double nouveauCout = c(s) + l->v->second;			//l->v->second est le coût de l'arête s - v
+		double nouveauCout = c(s) + l->valeur->second;			//l->v->second est le coût de l'arête s - v
 
 		if (etat(v) == LIBRE)
 			{
@@ -237,14 +237,14 @@ if (!cible) 	// le chemin trouvé est vide (il n'y a donc pas de chemin)
 else
 	if (!pere(cible))		// le chemin trouvé contient un seul sommet. Cela signifie que départ = cible
 	   {
-	   debut = new PElement<Sommet>(cible,NULL);
+	   debut = new PElement<Sommet>(NULL,cible);
 	   return debut;
 	   }
 	else	// le chemin trouvé a au moins 2 sommets
 	   {
 	   PElement<Sommet> * d = chemin(pere(cible), debut);
-	   d->s = new PElement<Sommet>(cible,NULL);
-	   return d->s;
+	   d->suivant = new PElement<Sommet>(NULL, cible);
+	   return d->suivant;
 	   }
 }
 

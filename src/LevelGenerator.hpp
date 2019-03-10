@@ -10,11 +10,11 @@
     class LevelGenerator
     {
         private:
-            Graphe<Peinture,InfoSommet> _labyrinthe;
             Vecteur2D _centre;
             Sommet<InfoSommet> * _sommetCourant;
             Sommet<InfoSommet> * _sommetGhost;
             unsigned int _complexite;
+            Graphe<Peinture,InfoSommet> _labyrinthe;
         public:
             LevelGenerator(const unsigned int color, const unsigned int color1, const unsigned int color2):_complexite(7){
                 this->generate(color, color1, color2);
@@ -25,7 +25,7 @@
 
             void generate(const unsigned int color, const unsigned int color1, const unsigned int color2);
 
-            Graphe<Peinture,InfoSommet>  * getGraphe(){return &this->_labyrinthe;}
+            Graphe<Peinture,InfoSommet> & getGraphe(){return this->_labyrinthe;}
 
             ~LevelGenerator();
 
