@@ -15,16 +15,16 @@ class TextureFactory : public Singleton<TextureFactory>{
     map<string, sf::Texture> _textures;
 private:
     TextureFactory(){
-        if (!_pacman.loadFromFile("texture/pacman.png"))
+        if (!_pacman.loadFromFile("Pacman/texture/pacman.png"))
             throw Erreur("impossible de charger pacman");
 
-        if (!_ghost.loadFromFile("texture/ghost.png"))
+        if (!_ghost.loadFromFile("Pacman/texture/ghost.png"))
             throw Erreur("impossible de charger ghost");
 
-        if (!_winner.loadFromFile("texture/winner.png"))
+        if (!_winner.loadFromFile("Pacman/texture/winner.png"))
             throw Erreur("impossible de charger winner");
-        
-        if (!_loser.loadFromFile("texture/loser.png"))
+
+        if (!_loser.loadFromFile("Pacman/texture/loser.png"))
             throw Erreur("impossible de charger loser");
 
         _textures["pacman"] = _pacman;
@@ -32,7 +32,7 @@ private:
         _textures["winner"] = _winner;
         _textures["loser"] = _loser;
     }
-    
+
     ~TextureFactory(){}
 public:
     const sf::Texture & getTexture(string textureName) const {return _textures.at(textureName);}

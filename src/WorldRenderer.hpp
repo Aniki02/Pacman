@@ -23,7 +23,7 @@ public:
     LevelGenerator * _labyrinthe;
     float _time;
     int  _score, _nbVie;
-    
+
 
 public:
     WorldRenderer();
@@ -44,18 +44,18 @@ public:
             _spriteGhost.setOrigin(TextureFactory::getInstance()->getTexture("ghost").getSize().x / 2, TextureFactory::getInstance()->getTexture("ghost").getSize().y/2);
             _spriteGhost.setPosition(posGhost.x, posGhost.y);
 
-            
+
             this->displayInfoGame(window);
             window.fenetre.draw(_spritePacman);
             window.fenetre.draw(_spriteGhost);
-        }  
+        }
     }
-    
+
     void movePacman(sf::Event event);
     void accepteMove(VisitorGhostMove * v){v->visite(this);}
     void moveGhost();
     bool loseGame(){
-        
+
         if(_spritePacman.getGlobalBounds().intersects(_spriteGhost.getGlobalBounds())){
             if(_nbVie > 1){
                 std::cout << "nombre de vie avant : " << _nbVie << std::endl;
@@ -71,7 +71,7 @@ public:
             return true;
         }
         return false;
-        
+
     }
 private:
     void move(Vecteur2D direction, PElement<Sommet<InfoSommet>> * voisins);
@@ -85,7 +85,7 @@ private:
         std::stringstream ss1;
         ss1 << "Vie : " << _nbVie;
         std::string s = ss1.str();
-        font.loadFromFile("font/arial.ttf");
+        font.loadFromFile("pacman/font/arial.ttf");
         texteVie.setString(s);
         texteVie.setPosition(0,0);
         texteVie.setCharacterSize(30);
@@ -96,14 +96,14 @@ private:
         std::stringstream ss2;
         ss2 << "Score : " << _score;
         std::string s1 = ss2.str();
-        font.loadFromFile("font/arial.ttf");
+        font.loadFromFile("pacman/font/arial.ttf");
         texteScore.setString(s1);
         texteScore.setPosition(0,35);
         texteScore.setCharacterSize(30);
         texteScore.setFont(font);
         texteScore.setFillColor(sf::Color::White);
 
-        
+
         window.fenetre.draw(texteVie);
         window.fenetre.draw(texteScore);
     }

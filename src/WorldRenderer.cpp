@@ -48,7 +48,7 @@ void WorldRenderer::update(sf::Event event){
 
 /////////////// MOVE PACMAN //////////////////
 void WorldRenderer::movePacman(sf::Event event){
-    
+
     if(event.type == sf::Event::EventType::KeyPressed){
 
         PElement<Sommet<InfoSommet> > * voisins = _labyrinthe->getGraphe().voisins(_labyrinthe->getSommetCourant());
@@ -70,10 +70,10 @@ void WorldRenderer::moveGhost(){
     if(_time > 1){
         // baisse l'opacité de la couleur de chaque arete tant qu'elle n'est pas transparente
         this->updateArete();
-        VisitorGhostMove * visiteur = new AStarMove();
+        VisitorGhostMove * visiteur = new SnakeMove();
         this->accepteMove(visiteur);
         _time = 0;
-    }  
+    }
 }
 
 /////////////// MOVE //////////////////

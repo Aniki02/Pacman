@@ -22,7 +22,7 @@ public:
         }
         return voisins->valeur;
     }
-    
+
     static Sommet<T> * choixSnake(Graphe<Peinture,T> & graphe, Sommet<T> * sommetCourant){
         // On choisit un sommet aléatoirement
         Sommet<InfoSommet> * sommetChoisi = ChoixSommet<InfoSommet>::choixRandom(graphe, sommetCourant);
@@ -31,7 +31,7 @@ public:
         Arete<Peinture, T> * arete = graphe.getAreteParSommets(sommetChoisi, sommetCourant);
         //pour chaque voisins on compare son arete avec la premiere arete choisis et on garde celle qui a la couleur la plus élevé
         while(voisins!= nullptr){
-           
+
             Arete<Peinture, T> * areteVoisin = graphe.getAreteParSommets(voisins->valeur, sommetCourant);
             if(arete->v.devant < areteVoisin->v.devant){
                 arete = areteVoisin;
@@ -53,5 +53,16 @@ public:
 
         return c->valeur;
     }
+
+     static Sommet<T> * choixVue(Graphe<Peinture,T>  &graphe, Sommet<T> *sommetCourant, Vecteur2D dep){
+        PElement<Sommet<InfoSommet> > * voisins = graphe.voisins(sommetCourant);
+
+        while (sommetCourant->v.vSommet.pos+dep != voisins->valeur->v.vSommet.pos){
+          voisins =  voisins->suivant;
+        }
+        return voisins->valeur;
+     }
+
+
 };
 #endif
