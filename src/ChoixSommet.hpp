@@ -46,11 +46,17 @@ public:
     static Sommet<T> * choixAStar(Graphe<Peinture,T> & graphe, Sommet<T> * sommetCourant, Sommet<T> * cible){
         Sommet<InfoSommet> * depart = sommetCourant;
         OutilsCarte::cible = cible;
-        Sommet<InfoSommet> * resultat;
 
-        resultat = AStarT< Graphe<Peinture,InfoSommet>,Sommet<InfoSommet> >::aStar(graphe, depart,  OutilsCarte::hh);
-        PElement<Sommet<InfoSommet>> * c = chemin(resultat, c);
+        AStarT< Graphe<Peinture,InfoSommet>,Sommet<InfoSommet> >::aStar1Cible(graphe, depart, cible, OutilsCarte::distance);
+        PElement<Sommet<InfoSommet>> * c = chemin(cible, c);
+        std::cout << "---------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
 
+        
+
+        while(c->suivant != nullptr)
+            c = c->suivant;
+        std::cout << "---------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
+        std::cout << c << std::endl;
         return c->valeur;
     }
 };
