@@ -1,6 +1,10 @@
 #ifndef _SINGLETON_HPP
 #define _SINGLETON_HPP
-
+/**
+ * \file Singleton.hpp
+ * \brief représente un singleton generique
+ * \author zitoun-diallo-sid
+ */
 #include <iostream>
 
 /////////////////////////////////////////////////////////////////////////////

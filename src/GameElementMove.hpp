@@ -1,5 +1,10 @@
 #ifndef _GAMEELEMENTMOVE_HPP
 #define _GAMEELEMENTMOVE_HPP
+/**
+ * \file GameElementMove.hpp
+ * \brief représente les différent élément du jeux pouvant bouger 
+ * \author zitoun-diallo-sid
+ */
 
 
 #include "GameElement.hpp"

@@ -1,6 +1,11 @@
-//#ifndef INFOARETE_H
-//#define INFOARETE_H
+#ifndef INFOARETE_H
+#define INFOARETE_H
 
+/**
+ * \file InfoArete.hpp
+ * \brief représente les information d'une arete
+ * \author zitoun-diallo-sid
+ */
 
 
 #pragma once
@@ -45,4 +50,4 @@ oss << "cout = " << cout1 << ", " << couleur;
 return oss.str();
 }
 
-//#endif // INFOARETE_H
+#endif // INFOARETE_H

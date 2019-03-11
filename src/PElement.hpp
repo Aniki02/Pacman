@@ -1,5 +1,10 @@
 #ifndef __PElement__
 #define __PElement__
+/**
+ * \file PElement.hpp
+ * \brief représente une liste generique
+ * \author zitoun-diallo-sid
+ */
 
 #include <iostream>
 #include <ostream>

@@ -1,5 +1,10 @@
 #ifndef __SOMMET__
 #define __SOMMET__
+/**
+ * \file Sommet.hpp
+ * \brief représente un sommet generique d'un graphe
+ * \author zitoun-diallo-sid
+ */
     #include "GElement.hpp"
 
     template <class T>

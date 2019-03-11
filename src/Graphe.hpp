@@ -1,5 +1,10 @@
 #ifndef __GRAPHE__
 #define __GRAPHE__
+/**
+ * \file Graphe.hpp
+ * \brief représente un graphe
+ * \author zitoun-diallo-sid
+ */
 
     #include "ExisteParClef.hpp"
 
@@ -17,7 +22,19 @@
             PElement<Sommet<T>> * lSommets;
             PElement<Arete<S,T>> * lAretes;
         public:
+            /**
+             *  \brief Constructeur
+             *
+             *  Constructeur de la classe Graphe
+             */
             Graphe();
+            /**
+             *  \brief Constructeur par recopie
+             *
+             *  Constructeur de la classe Graphe
+             *
+             *  \param graphe : le graphe a recopier
+             */
             Graphe(const Graphe<S,T> &graphe);
             const Graphe<S,T> & operator = (const Graphe<S,T>& graphe);
             void copie(const Graphe<S,T>& graphe);

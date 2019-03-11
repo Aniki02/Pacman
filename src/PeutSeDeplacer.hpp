@@ -1,5 +1,10 @@
 #ifndef _PEUTSEDEPLACER_HPP
 #define _PEUTSEDEPLACER_HPP
+/**
+ * \file PeutSeDeplacer.hpp
+ * \brief représente un predicat qui dis si on peut se deplacer ou non sur un sommet
+ * \author zitoun-diallo-sid
+ */
 
 #include "Vecteur2D.hpp"
 #include "Sommet.hpp"

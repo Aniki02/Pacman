@@ -96,6 +96,23 @@ inline static double normeSup(const Vecteur2D& u) { return max(abs(u.x),abs(u.y)
 
 
 //------------------ Vecteur2D ----------------------------------
+
+
+static Vecteur2D poursuite(const Vecteur2D &v1, const Vecteur2D &v2){
+        if(v1.y == v2.y){
+           if(v1.x < v2.x)
+                return Vecteur2D(-1,0);
+            else
+                return Vecteur2D(1,0);
+        }
+        if(v1.x == v2.x){
+           if(v1.y < v2.y)
+                return Vecteur2D(0,-1);
+            else
+                return Vecteur2D(0,1);
+        }
+        return Vecteur2D(0,0);
+}
 };
 
 inline ostream & operator << (ostream & os, const Vecteur2D & u) { os << (string) u; return os; }

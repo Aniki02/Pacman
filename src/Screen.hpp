@@ -1,6 +1,10 @@
 #ifndef _SCREEN_HPP
 #define _SCREEN_HPP
-
+/**
+ * \file Screen.hpp
+ * \brief représente un ecran
+ * \author zitoun-diallo-sid
+ */
 #include "SFML/Graphics.hpp"
 #include "Game.hpp"
 

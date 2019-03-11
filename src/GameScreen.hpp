@@ -1,5 +1,10 @@
 #ifndef _GAMESCREEN_HPP
 #define _GAMESCREEN_HPP
+/**
+ * \file GameScreen.hpp
+ * \brief représente lecran lorsque le jeux est lancer
+ * \author zitoun-diallo-sid
+ */
 
 
 #include "WorldRenderer.hpp"
@@ -10,6 +15,13 @@ class GameScreen : public Screen{
 public:
     WorldRenderer * wr;
 
+    /**
+     *  \brief Constructeur
+     *
+     *  Constructeur de la classe GameScreen
+     *
+     *  \param window : la fenetre de l'ecran
+     */
     GameScreen(FaxeRepereMonde * window):Screen(window){
         wr = new WorldRenderer();
     }

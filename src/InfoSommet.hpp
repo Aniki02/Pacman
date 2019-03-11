@@ -1,4 +1,9 @@
 #pragma once
+/**
+ * \file InfoSommet.hpp
+ * \brief représente les informations d'un sommet
+ * \author zitoun-diallo-sid
+ */
 
 #include "InfoAStar.hpp"
 #include "VSommet.hpp"

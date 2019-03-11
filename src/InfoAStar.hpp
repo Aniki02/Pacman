@@ -1,4 +1,9 @@
 #pragma once
+/**
+ * \file InfoAStar.hpp
+ * \brief représente les information dont aStar a besoin
+ * \author zitoun-diallo-sid
+ */
 
 #include <stdlib.h>
 #include <string>

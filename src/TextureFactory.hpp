@@ -1,6 +1,10 @@
 #ifndef _TEXTUREFACTORY_HPP
 #define _TEXTUREFACTORY_HPP
-
+/**
+ * \file TextureFactory.hpp
+ * \brief représente la classe qui charge toute les textures
+ * \author zitoun-diallo-sid
+ */
 #include "Singleton.hpp"
 #include "SFML/Graphics.hpp"
 #include "Erreur.hpp"
@@ -23,7 +27,7 @@ private:
 
         if (!_winner.loadFromFile("texture/winner.png"))
             throw Erreur("impossible de charger winner");
-        
+
         if (!_loser.loadFromFile("texture/loser.png"))
             throw Erreur("impossible de charger loser");
 
@@ -32,7 +36,7 @@ private:
         _textures["winner"] = _winner;
         _textures["loser"] = _loser;
     }
-    
+
     ~TextureFactory(){}
 public:
     const sf::Texture & getTexture(string textureName) const {return _textures.at(textureName);}

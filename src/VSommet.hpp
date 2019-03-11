@@ -1,5 +1,11 @@
 #ifndef __VSOMMET__
 #define __VSOMMET__
+
+/**
+ * \file VSommet.hpp
+ * \brief représente les valeur d'un sommet
+ * \author zitoun-diallo-sid
+ */
     #include <string>
     #include <iostream>
     #include <sstream>

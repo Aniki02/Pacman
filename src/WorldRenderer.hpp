@@ -1,6 +1,10 @@
 #ifndef _WORLDRENDERER_HPP
 #define _WORLDRENDERER_HPP
-
+/**
+ * \file WorldRenderer.hpp
+ * \brief classe qui dessine le monde
+ * \author zitoun-diallo-sid
+ */
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "World.hpp"
@@ -23,7 +27,7 @@ public:
     LevelGenerator * _labyrinthe;
     float _time;
     int  _score, _nbVie;
-    
+
 
 public:
     WorldRenderer();
@@ -44,18 +48,18 @@ public:
             _spriteGhost.setOrigin(TextureFactory::getInstance()->getTexture("ghost").getSize().x / 2, TextureFactory::getInstance()->getTexture("ghost").getSize().y/2);
             _spriteGhost.setPosition(posGhost.x, posGhost.y);
 
-            
+
             this->displayInfoGame(window);
             window.fenetre.draw(_spritePacman);
             window.fenetre.draw(_spriteGhost);
-        }  
+        }
     }
-    
+
     void movePacman(sf::Event event);
     void accepteMove(VisitorGhostMove * v){v->visite(this);}
     void moveGhost();
     bool loseGame(){
-        
+
         if(_spritePacman.getGlobalBounds().intersects(_spriteGhost.getGlobalBounds())){
             if(_nbVie > 1){
                 std::cout << "nombre de vie avant : " << _nbVie << std::endl;
@@ -71,7 +75,7 @@ public:
             return true;
         }
         return false;
-        
+
     }
 private:
     void move(Vecteur2D direction, PElement<Sommet<InfoSommet>> * voisins);
@@ -103,7 +107,7 @@ private:
         texteScore.setFont(font);
         texteScore.setFillColor(sf::Color::White);
 
-        
+
         window.fenetre.draw(texteVie);
         window.fenetre.draw(texteScore);
     }

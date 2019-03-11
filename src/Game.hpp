@@ -1,5 +1,10 @@
 #ifndef _GAME_HPP
 #define _GAME_HPP
+/**
+ * \file Game.hpp
+ * \brief représente le jeux
+ * \author zitoun-diallo-sid
+ */
 
 #include "FaxeRepereMonde.hpp"
 #include "Vecteur2D.hpp"
@@ -14,6 +19,11 @@ public:
     Screen * _screen = nullptr;
 
 public:
+    /**
+     *  \brief Constructeur
+     *
+     *  Constructeur de la classe Game
+     */
     Game(){
         _window = new FaxeRepereMonde("Pacman", 0xEFEFEFFF, Vecteur2D(-1, -1), Vecteur2D(9,9), 800, 500);
     }

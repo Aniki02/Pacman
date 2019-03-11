@@ -1,6 +1,10 @@
 #ifndef _VISITORGHOSTMOVE_HPP
 #define _VISITORGHOSTMOVE_HPP
-
+/**
+ * \file VisitorGhostMove.hpp
+ * \brief représente les mouvement d'un ghost
+ * \author zitoun-diallo-sid
+ */
 class WorldRenderer;
 
 

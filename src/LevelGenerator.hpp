@@ -1,5 +1,12 @@
 #ifndef __LEVELGENERATOR__HPP
 #define __LEVELGENERATOR__HPP
+
+/**
+ * \file LevelGenerator.hpp
+ * \brief représente le generateur de niveau 
+ * \author zitoun-diallo-sid
+ */
+
     #include    <vector>
     #include    <array>
 
