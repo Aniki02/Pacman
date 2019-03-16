@@ -70,7 +70,7 @@ void WorldRenderer::moveGhost(){
     if(_time > 1){
         // baisse l'opacité de la couleur de chaque arete tant qu'elle n'est pas transparente
         this->updateArete();
-        VisitorGhostMove * visiteur = new SnakeMove();
+        VisitorGhostMove * visiteur = new AStarMove();
         this->accepteMove(visiteur);
         _time = 0;
     }

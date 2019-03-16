@@ -53,16 +53,17 @@ public:
         OutilsCarte::cible = cible;
 
         AStarT< Graphe<Peinture,InfoSommet>,Sommet<InfoSommet> >::aStar1Cible(graphe, depart, cible, OutilsCarte::distance);
-        PElement<Sommet<InfoSommet>> * c = chemin(cible, c);
+        PElement<Sommet<InfoSommet>> * c = new PElement<Sommet<InfoSommet>>(nullptr, sommetCourant);
+        chemin(OutilsCarte::cible, c);
         std::cout << "---------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
 
         
 
-        while(c->suivant != nullptr)
-            c = c->suivant;
+        //while(c->suivant != nullptr)
+        //    c = c->suivant;
         std::cout << "---------------------------------------------------------------------------------------------------------------------------------------" << std::endl;
         std::cout << c << std::endl;
-        return c->valeur;
+        return c->suivant->valeur;
     }
 
     static Sommet<T> * choixVue(Graphe<Peinture,T>  &graphe, Sommet<T> *sommetCourant, Vecteur2D dep){

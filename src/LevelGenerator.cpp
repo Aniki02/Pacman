@@ -1,4 +1,5 @@
 #include "LevelGenerator.hpp"
+#include "OutilsCarte.hpp"
  
 
  /////////////////////////////// GENERATE ///////////////////////////////////
@@ -25,15 +26,13 @@ void LevelGenerator::generatorArete1(const int ligne, const int colonne,
                                         vector<vector<Sommet<InfoSommet> *>> ensembleSommets)
 {
     for(int i(0); i<ligne-1; i++){
-        ensembleAretes.push_back(this->_labyrinthe.creeArete(Peinture(c1, c2, 2),
-                                    ensembleSommets[ligne-1][i], ensembleSommets[ligne-1][i+1]));
-        ensembleAretes.push_back(this->_labyrinthe.creeArete(Peinture(c1, c2, 2),
-                                ensembleSommets[i][colonne-1], ensembleSommets[i+1][colonne-1]));
+        
+        ensembleAretes.push_back(OutilsCarte::creeArete(ensembleSommets[ligne-1][i], ensembleSommets[ligne-1][i+1], this->_labyrinthe));
+        ensembleAretes.push_back(OutilsCarte::creeArete(ensembleSommets[i][colonne-1], ensembleSommets[i+1][colonne-1], this->_labyrinthe));
+
         for(int c(0); c<colonne-1; c++ ){
-            ensembleAretes.push_back(this->_labyrinthe.creeArete(Peinture(c1, c2, 2),
-                                    ensembleSommets[i][c], ensembleSommets[i][c+1]));
-            ensembleAretes.push_back(this->_labyrinthe.creeArete(Peinture(c1, c2, 2),
-                                ensembleSommets[i][c], ensembleSommets[i+1][c]));
+            ensembleAretes.push_back(OutilsCarte::creeArete(ensembleSommets[i][c], ensembleSommets[i][c+1], this->_labyrinthe));
+            ensembleAretes.push_back(OutilsCarte::creeArete(ensembleSommets[i][c], ensembleSommets[i+1][c], this->_labyrinthe));
         }
     }
 }
@@ -50,28 +49,24 @@ void LevelGenerator::generatorArete21(const int ligne, const int colonne,
 
     for(int l(0); l<milieu; l++){
         for(int c(mCase); c<colonne-1; c++ ){
-            ensembleAretes.push_back(this->_labyrinthe.creeArete(Peinture(c1, c2, 3),
-                                    ensembleSommets[l+1][c], ensembleSommets[l][c+1]));
+             ensembleAretes.push_back(OutilsCarte::creeArete(ensembleSommets[l+1][c], ensembleSommets[l][c+1], this->_labyrinthe));
         }
     }
     for(int l(0); l<milieu; l++){
         for(int c(0); c<mCase; c++ ){
-            ensembleAretes.push_back(this->_labyrinthe.creeArete(Peinture(c1, c2, 3),
-                                    ensembleSommets[l][c], ensembleSommets[l+1][c+1]));
+            ensembleAretes.push_back(OutilsCarte::creeArete(ensembleSommets[l][c], ensembleSommets[l+1][c+1], this->_labyrinthe));
         }
     }
 
     for(int l(milieu); l<ligne-1; l++){
         for(int c(0); c<mCase; c++ ){
-            ensembleAretes.push_back(this->_labyrinthe.creeArete(Peinture(c1, c2, 3),
-                                    ensembleSommets[l+1][c], ensembleSommets[l][c+1]));
+            ensembleAretes.push_back(OutilsCarte::creeArete(ensembleSommets[l+1][c], ensembleSommets[l][c+1], this->_labyrinthe));
         }
     }
 
     for(int l(milieu); l<ligne-1; l++){
         for(int c(mCase); c<colonne-1; c++ ){
-            ensembleAretes.push_back(this->_labyrinthe.creeArete(Peinture(c1, c2, 3),
-                                    ensembleSommets[l][c], ensembleSommets[l+1][c+1]));
+            ensembleAretes.push_back(OutilsCarte::creeArete(ensembleSommets[l][c], ensembleSommets[l+1][c+1], this->_labyrinthe));
         }
     }
 
