@@ -30,7 +30,13 @@ public:
     Screen * getScreen() const{return _screen;}
     void setScreen(Screen * newScreen){_screen = newScreen;}
 
-    
+    ~Game(){
+        delete _window;
+        delete _screen;
+
+        _window = nullptr;
+        _screen = nullptr;
+    }
     void run(){
         sf::Clock clock;
         while (_window->fenetre.isOpen()){

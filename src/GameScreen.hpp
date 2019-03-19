@@ -46,5 +46,10 @@ public:
     } 
     
     bool winGame(){return wr->_score >= 49;}
+    ~GameScreen(){
+        delete wr;
+        
+        wr = nullptr;
+    }
 };
 #endif
