@@ -18,5 +18,10 @@ public:
     virtual void update(sf::Event event) = 0;
     virtual void render(sf::Time elapsedTime) = 0;
 
+    ~Screen(){
+        delete _window;
+
+        _window = nullptr;
+    }
 };
 #endif
