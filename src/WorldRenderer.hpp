@@ -31,7 +31,14 @@ public:
 
 public:
     WorldRenderer();
-    virtual ~WorldRenderer(){delete _world;}
+    virtual ~WorldRenderer()
+    {
+        delete _world;
+        delete _labyrinthe;
+
+        _world = nullptr;
+        _labyrinthe = nullptr;
+    }
     void handleInput(sf::Event event);
     void update(sf::Event event);
 

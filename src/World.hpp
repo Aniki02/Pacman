@@ -21,6 +21,14 @@ public:
 
     Pacman * getPacman() const {return _pacman;}
     Ghost * getGhost() const {return _ghost;}
+
+    ~World(){
+        delete _pacman;
+        delete _ghost;
+
+        _pacman = nullptr;
+        _ghost = nullptr;
+    }
     
 };
 #endif

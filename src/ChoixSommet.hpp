@@ -75,6 +75,6 @@ public:
         return voisins->valeur;
      }
 
-
+    ~ChoixSommet(){}
 };
 #endif

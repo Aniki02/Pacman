@@ -11,5 +11,6 @@
 class Pacman : public GameElementMove{
 public:
     Pacman():GameElementMove("pacman", 1){}
+    ~Pacman(){}
 };
 #endif

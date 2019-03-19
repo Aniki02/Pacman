@@ -97,3 +97,10 @@ void LevelGenerator::initSommet(){
     _sommetCourant = temp->valeur;
     _sommetGhost = _labyrinthe.lSommets->valeur;
 }
+LevelGenerator::~LevelGenerator(){
+    delete _sommetCourant;
+    delete _sommetGhost;
+
+    _sommetCourant = nullptr;
+    _sommetGhost = nullptr;
+}

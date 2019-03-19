@@ -16,5 +16,6 @@ public:
      *  Constructeur de la classe GameElementMove
      */
     Ghost():GameElementMove("ghost", 1){}
+    ~Ghost(){}
 };
 #endif
